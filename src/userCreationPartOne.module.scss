@@ -1,9 +1,3 @@
-.arrow {
-  path {
-    fill: black;
-  }
-}
-
 .headerText {
   margin: 0;
 }
@@ -19,27 +13,6 @@
   transform: scale(1.1);
 }
 
-.nextButton {
-  padding: 8px 10px;
-  margin: 0;
-  border-radius: 999px;
-  border: none;
-  background: #d9d9d9;
-}
-
-.nextContainer {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-}
-
-.infoSection {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 48px;
-}
-
 .headerContainer {
   display: grid;
   gap: 8px;
@@ -49,10 +22,6 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
-}
-
-.questionText {
-  font-size: 20px;
 }
 
 .genderButton {
