@@ -1,12 +1,10 @@
 import "./App.css";
+import LoginPage from "./LoginPage";
 
 function App() {
   return (
     <div className="App">
-      <a href="/login">
-        <button>Login</button>
-      </a>
-      <header className="App-header"></header>
+      <LoginPage />
     </div>
   );
 }

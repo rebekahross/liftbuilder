@@ -5,6 +5,8 @@ import "./index.css";
 import App from "./App";
 import LoginPage from "./LoginPage";
 import SignupPage from "./SignupPage";
+import UserCreationPartOne from "./UserCreationPartOne";
+import UserCreationPartTwo from "./UserCreationPartTwo";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -14,6 +16,14 @@ root.render(
         <Route path="/" element={<App />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
+        <Route
+          path="/user-creation-part-one"
+          element={<UserCreationPartOne />}
+        />
+        <Route
+          path="/user-creation-part-two"
+          element={<UserCreationPartTwo />}
+        />
       </Routes>
     </Router>
   </React.StrictMode>

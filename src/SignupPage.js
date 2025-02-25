@@ -11,11 +11,16 @@ const SignupPage = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleSignup = (e) => {
     e.preventDefault();
-    if (email === "admin@example.com" && password === "password") {
-      alert("Login successful!");
-      navigate("/");
+    if (
+      firstName === "firstName" &&
+      lastName === "lastName" &&
+      email === "admin@example.com" &&
+      password === "password" &&
+      confirmPassword === "password"
+    ) {
+      navigate("/user-creation-part-one");
     } else {
       alert("Invalid credentials");
     }
@@ -23,7 +28,7 @@ const SignupPage = () => {
 
   return (
     <div>
-      <form onSubmit={handleLogin} className={styles.formWrapper}>
+      <form onSubmit={handleSignup} className={styles.formWrapper}>
         <div className={styles.loginContainer}>
           <h1 className={styles.logoText}>LiftBuilder</h1>
           <div>
