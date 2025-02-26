@@ -6,7 +6,7 @@ const UserCreationQuestion = ({ question, children }) => {
   return (
     <div className={styles.infoSection}>
       <div className={styles.questionText}>{question}</div>
-      {children}
+      <div className={styles.childrenContainer}>{children}</div>
     </div>
   );
 };

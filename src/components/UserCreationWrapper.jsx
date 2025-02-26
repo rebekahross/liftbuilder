@@ -1,8 +1,14 @@
 import React, { useState } from "react";
+import ArrowContainer from "./ArrowContainer";
 
 import styles from "./userCreationWrapper.module.scss";
 
-const UserCreationWrapper = ({ children }) => {
+const UserCreationWrapper = ({
+  prevLink,
+  nextLink,
+  questionNumber,
+  children,
+}) => {
   const [firstName, setFirstName] = useState("");
 
   return (
@@ -15,7 +21,14 @@ const UserCreationWrapper = ({ children }) => {
           <div>Get ready to achieve your fitness goals!</div>
           <div>First, let's get to know you...</div>
         </div>
-        {children}
+        <div className={styles.bodyContainer}>
+          <div className={styles.childrenContainer}>{children}</div>
+          <ArrowContainer
+            prevLink={prevLink}
+            nextLink={nextLink}
+            questionNumber={questionNumber}
+          />
+        </div>
       </div>
     </div>
   );

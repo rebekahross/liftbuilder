@@ -6,8 +6,9 @@ import SignupPage from "./SignupPage";
 import UserCreationPartOne from "./UserCreationPartOne";
 import UserCreationPartTwo from "./UserCreationPartTwo";
 import UserCreationPartThree from "./UserCreationPartThree";
-import "./index.css"; // Ensure styles are properly imported
+import "./index.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import UserCreationPartFour from "./UserCreationPartFour";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -28,6 +29,10 @@ root.render(
         <Route
           path="/user-creation-part-three"
           element={<UserCreationPartThree />}
+        />
+        <Route
+          path="/user-creation-part-four"
+          element={<UserCreationPartFour />}
         />
       </Routes>
     </Router>
