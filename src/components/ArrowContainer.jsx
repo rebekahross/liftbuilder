@@ -1,5 +1,5 @@
-import ArrowRight from "./icons/ArrowRight";
-import ArrowLeft from "./icons/ArrowLeft";
+import ArrowRight from "./icons/ArrowRight.jsx";
+import ArrowLeft from "./icons/ArrowLeft.jsx";
 import { useNavigate } from "react-router-dom";
 
 import styles from "./arrowContainer.module.scss";

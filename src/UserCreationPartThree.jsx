@@ -4,6 +4,7 @@ import ArrowContainer from "./components/ArrowContainer";
 import UserCreationQuestion from "./components/UserCreationQuestion";
 
 import styles from "./userCreationPartOne.module.scss";
+import RangeSlider from "./components/RangeSlider";
 
 const UserCreationPartThree = () => {
   const [gender, setGender] = useState("");
@@ -18,6 +19,7 @@ const UserCreationPartThree = () => {
       <UserCreationQuestion question={"What is your current fitness level?"}>
         <div className={styles.buttonContainer}></div>
       </UserCreationQuestion>
+      <RangeSlider />
       <ArrowContainer
         questionNumber={3}
         nextLink="/user-creation-part-four"
