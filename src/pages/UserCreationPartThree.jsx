@@ -1,9 +1,9 @@
 import React from "react";
-import UserCreationWrapper from "./components/UserCreationWrapper";
-import UserCreationQuestion from "./components/UserCreationQuestion";
-import RangeSlider from "./components/RangeSlider";
+import UserCreationWrapper from "../components/UserCreationWrapper";
+import UserCreationQuestion from "../components/UserCreationQuestion";
+import RangeSlider from "../components/RangeSlider";
 
-import styles from "./userCreationPartThree.module.scss";
+import styles from "./styles/userCreationPartThree.module.scss";
 
 const UserCreationPartThree = () => {
   return (

@@ -1,6 +1,6 @@
 import React from "react";
 
-import styles from "./inputField.module.scss";
+import styles from "./styles/inputField.module.scss";
 
 const InputField = ({ label, value, setValue, type, placeholder = "" }) => {
   const onChange = (e) => {

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import styles from "./userCreationQuestion.module.scss";
+import styles from "./styles/userCreationQuestion.module.scss";
 
 const UserCreationQuestion = ({ question, children }) => {
   return (

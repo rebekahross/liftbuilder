@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import styles from "./signupPage.module.scss";
+import styles from "./styles/signupPage.module.scss";
 
 const SignupPage = () => {
   const [firstName, setFirstName] = useState("");

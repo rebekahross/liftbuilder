@@ -1,13 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import LoginPage from "./LoginPage";
-import SignupPage from "./SignupPage";
-import UserCreationPartOne from "./UserCreationPartOne";
-import UserCreationPartTwo from "./UserCreationPartTwo";
-import UserCreationPartThree from "./UserCreationPartThree";
-import "./index.css";
+import LoginPage from "./pages/LoginPage";
+import SignupPage from "./pages/SignupPage";
+import UserCreationPartOne from "./pages/UserCreationPartOne";
+import UserCreationPartTwo from "./pages/UserCreationPartTwo";
+import UserCreationPartThree from "./pages/UserCreationPartThree";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-import UserCreationPartFour from "./UserCreationPartFour";
+import UserCreationPartFour from "./pages/UserCreationPartFour";
+import "./index.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
