@@ -7,6 +7,7 @@ import UserCreationPartTwo from "./pages/UserCreationPartTwo";
 import UserCreationPartThree from "./pages/UserCreationPartThree";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import UserCreationPartFour from "./pages/UserCreationPartFour";
+import WorkoutPage from "./pages/WorkoutPage";
 import "./index.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -32,6 +33,11 @@ root.render(
         <Route
           path="/user-creation-part-four"
           element={<UserCreationPartFour />}
+        />
+
+        <Route
+          path="/workout"
+          element={<WorkoutPage />}
         />
       </Routes>
     </Router>
