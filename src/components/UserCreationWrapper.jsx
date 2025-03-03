@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ArrowContainer from "./ArrowContainer";
 
-import styles from "./userCreationWrapper.module.scss";
+import styles from "./styles/userCreationWrapper.module.scss";
 
 const UserCreationWrapper = ({
   prevLink,

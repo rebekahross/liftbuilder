@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import SelectDropdown from "./components/SelectDropdown";
-import { heightOptions, weightOptions } from "./dropdownOptions";
-import UserCreationWrapper from "./components/UserCreationWrapper";
-import UserCreationQuestion from "./components/UserCreationQuestion";
+import SelectDropdown from "../components/SelectDropdown";
+import { heightOptions, weightOptions } from "../models/dropdownOptions";
+import UserCreationWrapper from "../components/UserCreationWrapper";
+import UserCreationQuestion from "../components/UserCreationQuestion";
 
-import styles from "./userCreationPartTwo.module.scss";
+import styles from "./styles/userCreationPartTwo.module.scss";
 
 const UserCreationPartTwo = () => {
   const [height, setHeight] = useState("");

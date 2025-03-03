@@ -1,7 +1,7 @@
 import React from "react";
 import { Range } from "react-range";
 
-import styles from "./rangeSlider.module.scss";
+import styles from "./styles/rangeSlider.module.scss";
 
 const RangeSlider = ({ leftLabel, centerLabel, rightLabel }) => {
   const [values, setValues] = React.useState([50]);

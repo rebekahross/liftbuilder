@@ -2,7 +2,7 @@ import ArrowRight from "./icons/ArrowRight.jsx";
 import ArrowLeft from "./icons/ArrowLeft.jsx";
 import { useNavigate } from "react-router-dom";
 
-import styles from "./arrowContainer.module.scss";
+import styles from "./styles/arrowContainer.module.scss";
 
 const ArrowContainer = ({ questionNumber, nextLink, prevLink }) => {
   const navigate = useNavigate();
