@@ -8,13 +8,17 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    if (email === "admin@example.com" && password === "password") {
-      alert("Login successful!");
-      navigate("/");
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email: email,
+      password: password,
+    })
+
+    if (error) {
+      alert(error);
     } else {
-      alert("Invalid credentials");
+      navigate('/');
     }
   };
 

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { supabase } from "./lib/supabase";
 
 import styles from "./signupPage.module.scss";
 
@@ -11,18 +12,24 @@ const SignupPage = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleSignup = (e) => {
+  const handleSignup = async (e) => {
     e.preventDefault();
-    if (
-      firstName === "firstName" &&
-      lastName === "lastName" &&
-      email === "admin@example.com" &&
-      password === "password" &&
-      confirmPassword === "password"
-    ) {
-      navigate("/user-creation-part-one");
+    const { data, error } = await supabase.auth.signUp({
+      email: email,
+      password: password,
+      options: {
+        data: {
+          first_name: firstName,
+          last_name: lastName,
+          email: email,
+        },
+      },
+    })
+
+    if (error) {
+      alert(error);
     } else {
-      alert("Invalid credentials");
+      navigate('/');
     }
   };
 
