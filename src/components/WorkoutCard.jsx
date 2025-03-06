@@ -9,7 +9,7 @@ import ThreeDots from "./icons/ThreeDots"
 
 import styles from "./styles/workoutCard.module.scss"
 
-export default function WorkoutCard({ setData, onRemove, onReplace }) {
+export default function WorkoutCard({ setData, onRemove, onReplace, onSubmitRest }) {
   const [restTime, setRestTime] = useState(setData.initRestTime)
   const [menuOpen, setMenuOpen] = useState(false)
   const [isRemoving, setIsRemoving] = useState(false)
@@ -23,6 +23,7 @@ export default function WorkoutCard({ setData, onRemove, onReplace }) {
       newList[setNum] = !newList[setNum]
       return newList
     })
+    onSubmitRest(restTime)
   }
 
   useEffect(() => {
