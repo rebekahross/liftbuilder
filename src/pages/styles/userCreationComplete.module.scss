@@ -2,9 +2,8 @@
   margin: 0;
 }
 
-.headerContainer {
-  display: grid;
-  gap: 8px;
+.subtitleText {
+  font-size: 24px;
 }
 
 .contentWrapper {
@@ -17,21 +16,20 @@
 .bodyContainer {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  height: 100vh;
-}
-
-.childrenContainer {
-  flex: 1;
+  align-items: center;
+  width: 70%;
+  gap: 35px;
 }
 
 .contentContainer {
   background-color: #fafafa;
   display: flex;
   flex-direction: column;
-  padding: 40px 40px 70px 40px;
-  gap: 10px;
+  padding: 40px;
   border-radius: 40px;
   width: 750px;
   height: 505px;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
 }

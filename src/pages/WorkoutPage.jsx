@@ -1,5 +1,8 @@
 "use client";
-
+import WorkoutCard from "../components/WorkoutCard";
+import RestTimerModal from "../components/RestTimerModal";
+import NavBar from "../components/NavBar";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState, useCallback } from "react";
 import dayjs from "dayjs";
 import duration from "dayjs/plugin/duration";
@@ -7,10 +10,7 @@ import duration from "dayjs/plugin/duration";
 dayjs.extend(duration);
 
 import styles from "./styles/workoutPage.module.scss";
-import WorkoutCard from "../components/WorkoutCard";
-import RestTimerModal from "../components/RestTimerModal";
-import NavBar from "../components/NavBar";
-import { useNavigate } from "react-router-dom";
+
 
 export default function WorkoutPage() {
   const [currentDateString, setCurrentDateString] = useState("");

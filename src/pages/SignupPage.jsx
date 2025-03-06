@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import SubmitButton from "../components/SubmitButton";
 
 import styles from "./styles/signupPage.module.scss";
 
@@ -81,9 +82,7 @@ const SignupPage = () => {
               className={styles.inputField}
             />
           </div>
-          <button type="submit" className={styles.loginButton}>
-            Login
-          </button>
+          <SubmitButton text={"Submit"} />
           <div>
             Already have an account? <a href="/login">Login!</a>
           </div>
