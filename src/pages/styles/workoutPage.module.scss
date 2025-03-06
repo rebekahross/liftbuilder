@@ -105,3 +105,25 @@ button:focus {
   width: 15rem;
   margin-left: 1rem;
 }
+
+.workoutCardContainer {
+  transition: opacity 0.5s ease, transform 0.5s ease, margin 0.5s ease, height 0.5s ease;
+  opacity: 1;
+  transform: translateY(0);
+  overflow: hidden;
+  height: auto;
+  margin-bottom: 1rem; // Adjust based on your existing spacing
+}
+
+.removing {
+  opacity: 0;
+  transform: translateY(-20px);
+  height: 0;
+  margin: 0;
+  pointer-events: none; // Prevent interaction while animating out
+}
+
+// Make sure all workout cards have transitions for moving up
+.workoutCardContainer + .workoutCardContainer {
+  transition: transform 0.5s ease, margin-top 0.5s ease;
+}
