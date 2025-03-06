@@ -10,6 +10,7 @@ import styles from "./styles/workoutPage.module.scss";
 import WorkoutCard from "../components/WorkoutCard";
 import RestTimerModal from "../components/RestTimerModal";
 import NavBar from "../components/NavBar";
+import { useNavigate } from "react-router-dom";
 
 export default function WorkoutPage() {
   const [currentDateString, setCurrentDateString] = useState("");
@@ -18,6 +19,8 @@ export default function WorkoutPage() {
   const [workoutSets, setWorkoutSets] = useState([]);
   const [removingIndices, setRemovingIndices] = useState([]);
   const [restTimerTime, setRestTimerTime] = useState(0);
+
+  const navigate = useNavigate()
 
   const generateCurrentTimeString = () => {
     const weekdays = [
@@ -50,6 +53,10 @@ export default function WorkoutPage() {
 
     return `${weekdays[currentDayNumber]} ${timeOfDayString}`;
   };
+
+  const handleRegenerate = () => {
+    navigate('/loadingWorkout')
+  }
 
   const formatElapsedTime = (seconds) => {
     const duration = dayjs.duration(seconds, "seconds");
@@ -272,7 +279,7 @@ export default function WorkoutPage() {
             className={styles.mediumTextInput}
             placeholder="Add your comments here"
           />
-          <button className={styles.regenerateButton}>Regenerate</button>
+          <button className={styles.regenerateButton} onClick={() => handleRegenerate()}>Regenerate</button>
         </div>
       </div>
       <hr />
@@ -344,6 +351,7 @@ export default function WorkoutPage() {
           onClick={() => {
             setIsWorkoutActive(false);
             // Add any other finish workout logic here
+            navigate('/')
           }}
         >
           Finish Workout

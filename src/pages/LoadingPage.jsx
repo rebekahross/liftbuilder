@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import styles from "./styles/loadingPage.module.scss";
 import { useNavigate } from 'react-router-dom';
+import NavBar from '../components/NavBar';
 
 export default function LoadingPage() {
   const navigate = useNavigate();
@@ -18,6 +19,7 @@ export default function LoadingPage() {
 
   return (
     <div className={styles.mainPage}>
+      <NavBar />
       <div className={styles.mainContainer}>
         <h1>Generating Workout</h1>
         <h4>Please Wait</h4>
