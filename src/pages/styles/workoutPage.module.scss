@@ -17,6 +17,7 @@ button:focus {
   background-color: white;
   margin: auto;
   padding: 0 4rem; 
+  padding-top: 5rem;
   display: flex;
   flex-direction: column;
   max-width: calc(min(80rem, 80vw));
@@ -72,6 +73,7 @@ button:focus {
   border-radius: 0.4rem;
   border: none;
   padding: 0.5rem;
+  margin-right: 1em;
 }
 
 .durationTitle {
@@ -104,4 +106,26 @@ button:focus {
   padding: 1rem;
   width: 15rem;
   margin-left: 1rem;
+}
+
+.workoutCardContainer {
+  transition: opacity 0.5s ease, transform 0.5s ease, margin 0.5s ease, height 0.5s ease;
+  opacity: 1;
+  transform: translateY(0);
+  overflow: hidden;
+  height: auto;
+  margin-bottom: 1rem; // Adjust based on your existing spacing
+}
+
+.removing {
+  opacity: 0;
+  transform: translateY(-20px);
+  height: 0;
+  margin: 0;
+  pointer-events: none; // Prevent interaction while animating out
+}
+
+// Make sure all workout cards have transitions for moving up
+.workoutCardContainer + .workoutCardContainer {
+  transition: transform 0.5s ease, margin-top 0.5s ease;
 }
