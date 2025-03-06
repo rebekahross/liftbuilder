@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 import { restTimeOptions } from "../models/dropdownOptions"
 import SelectDropdown from "./SelectDropdown"
 import RangeSlider from "./RangeSlider"
@@ -16,6 +16,7 @@ export default function WorkoutCard({ setData, onRemove, onReplace, onSubmitRest
   const menuRef = useRef(null)
   const buttonRef = useRef(null)
   const [setCompletion, setSetCompletion] = useState(setData.sets.map((s) => s.setComplete))
+  const [sets, setSets] = useState(setData.sets)
 
   const handleSetComplete = (setNum) => {
     setSetCompletion((prevCompletions) => {
@@ -23,7 +24,15 @@ export default function WorkoutCard({ setData, onRemove, onReplace, onSubmitRest
       newList[setNum] = !newList[setNum]
       return newList
     })
-    onSubmitRest(restTime)
+    if (!setCompletion[setNum]) {
+      onSubmitRest(restTime)
+    }
+  }
+
+  const handleAddSet = () => {
+    const newSet = sets[sets.length - 1]
+    setSets([...sets, newSet])
+    setSetCompletion([...setCompletion, false])
   }
 
   useEffect(() => {
@@ -113,7 +122,7 @@ export default function WorkoutCard({ setData, onRemove, onReplace, onSubmitRest
               </tr>
             </thead>
             <tbody>
-              {setData.sets.map((set, index) => {
+              {sets.map((set, index) => {
                 return (
                   <tr key={index}>
                     <td>
@@ -134,7 +143,7 @@ export default function WorkoutCard({ setData, onRemove, onReplace, onSubmitRest
               })}
             </tbody>
           </table>
-          <button className={styles.addSetButton}>+ Add Set</button>
+          <button className={styles.addSetButton} onClick={() => handleAddSet()}>+ Add Set</button>
         </div>
       </div>
       <div className={styles.difficultyDiv}>
