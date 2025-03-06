@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import UserCreationWrapper from "./components/UserCreationWrapper";
-import UserCreationQuestion from "./components/UserCreationQuestion";
-import InputField from "./components/InputField";
-import ToggleSwitch from "./components/ToggleSwitch";
+import ToggleSwitch from "../components/ToggleSwitch";
+import UserCreationWrapper from "../components/UserCreationWrapper";
+import UserCreationQuestion from "../components/UserCreationQuestion";
+import InputField from "../components/InputField";
 
-import styles from "./userCreationPartFour.module.scss";
+import styles from "./styles/userCreationPartFour.module.scss";
 
 const UserCreationPartFour = () => {
   const [benchPress, setBenchPress] = useState();

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import UserCreationWrapper from "./components/UserCreationWrapper";
-import UserCreationQuestion from "./components/UserCreationQuestion";
+import UserCreationWrapper from "../components/UserCreationWrapper";
+import UserCreationQuestion from "../components/UserCreationQuestion";
+import LargeInputBox from "../components/LargeInputBox";
 
-import styles from "./userCreationPartFive.module.scss";
-import LargeInputBox from "./components/LargeInputBox";
+import styles from "./styles/userCreationPartFive.module.scss";
 
 const UserCreationPartFive = () => {
   const [textInput, setTextInput] = useState("");

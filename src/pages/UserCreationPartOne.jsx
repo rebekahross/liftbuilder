@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import UserCreationWrapper from "./components/UserCreationWrapper";
-import UserCreationQuestion from "./components/UserCreationQuestion";
+import UserCreationWrapper from "../components/UserCreationWrapper";
+import UserCreationQuestion from "../components/UserCreationQuestion";
 
-import styles from "./userCreationPartOne.module.scss";
+import styles from "./styles/userCreationPartOne.module.scss";
 
 const UserCreationPartOne = () => {
   const [gender, setGender] = useState("");

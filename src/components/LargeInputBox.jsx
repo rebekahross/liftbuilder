@@ -1,6 +1,6 @@
 import React from "react";
 
-import styles from "./largeInputBox.module.scss";
+import styles from "./styles/largeInputBox.module.scss";
 
 const LargeInputBox = ({ value, setValue }) => {
   const onChange = (e) => {

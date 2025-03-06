@@ -9,7 +9,7 @@ import UserCreationPartOne from "./UserCreationPartOne";
 import UserCreationPartTwo from "./UserCreationPartTwo";
 import UserCreationPartThree from "./UserCreationPartThree";
 import UserCreationPartFour from "./UserCreationPartFour";
-import UserCreationPartFive from "./UserCreationPartFive";
+import UserCreationPartFive from "./pages/UserCreationPartFive";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

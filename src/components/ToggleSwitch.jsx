@@ -1,4 +1,4 @@
-import styles from "./toggleSwitch.module.scss";
+import styles from "./styles/toggleSwitch.module.scss";
 
 const ToggleSwitch = ({ isToggled, setIsToggled, leftText, rightText }) => {
   const handleToggle = () => {
