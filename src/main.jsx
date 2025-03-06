@@ -1,5 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import HomePage from "./pages/HomePage";
+import LoadingPage from "./pages/LoadingPage"
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import UserCreationPartOne from "./pages/UserCreationPartOne";
@@ -15,30 +17,16 @@ root.render(
   <React.StrictMode>
     <Router>
       <Routes>
-        <Route path="/" element={<Navigate to="/login" />} /> {/* TODO: Set this to the Home Component for logged in users once it's built */}
+        <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
-        <Route
-          path="/user-creation-part-one"
-          element={<UserCreationPartOne />}
-        />
-        <Route
-          path="/user-creation-part-two"
-          element={<UserCreationPartTwo />}
-        />
-        <Route
-          path="/user-creation-part-three"
-          element={<UserCreationPartThree />}
-        />
-        <Route
-          path="/user-creation-part-four"
-          element={<UserCreationPartFour />}
-        />
+        <Route path="/user-creation-part-one" element={<UserCreationPartOne />} />
+        <Route path="/user-creation-part-two" element={<UserCreationPartTwo />} />
+        <Route path="/user-creation-part-three" element={<UserCreationPartThree />} />
+        <Route path="/user-creation-part-four" element={<UserCreationPartFour />} />
 
-        <Route
-          path="/workout"
-          element={<WorkoutPage />}
-        />
+        <Route path="/loadingWorkout" element={<LoadingPage />} />
+        <Route path="/workout" element={<WorkoutPage />} />
       </Routes>
     </Router>
   </React.StrictMode>

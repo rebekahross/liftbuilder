@@ -9,11 +9,12 @@ dayjs.extend(duration);
 import styles from "./styles/workoutPage.module.scss";
 import WorkoutCard from "../components/WorkoutCard";
 import RestTimerModal from "../components/RestTimerModal";
+import NavBar from "../components/NavBar";
 
 export default function WorkoutPage() {
   const [currentDateString, setCurrentDateString] = useState("");
   const [elapsedTime, setElapsedTime] = useState(0);
-  const [isWorkoutActive, setIsWorkoutActive] = useState(false);
+  const [isWorkoutActive, setIsWorkoutActive] = useState(true);
   const [workoutSets, setWorkoutSets] = useState([]);
   const [removingIndices, setRemovingIndices] = useState([]);
   const [restTimerTime, setRestTimerTime] = useState(0);
@@ -248,6 +249,7 @@ export default function WorkoutPage() {
 
   return (
     <div className={styles.mainDiv}>
+      <NavBar />
       {(restTimerTime != 0) && (<RestTimerModal startTime={restTimerTime} onExit={() => {setRestTimerTime(0)}}/>)}
       <div className={styles.overviewPanel}>
         <h1>{currentDateString} Workout Plan</h1>
