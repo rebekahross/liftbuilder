@@ -9,6 +9,8 @@ import UserCreationPartThree from "./UserCreationPartThree";
 import "./index.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import UserCreationPartFour from "./UserCreationPartFour";
+import UserCreationPartFive from "./UserCreationPartFive";
+import UserCreationComplete from "./UserCreationComplete";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -33,6 +35,14 @@ root.render(
         <Route
           path="/user-creation-part-four"
           element={<UserCreationPartFour />}
+        />
+        <Route
+          path="/user-creation-part-five"
+          element={<UserCreationPartFive />}
+        />
+        <Route
+          path="/user-creation-complete"
+          element={<UserCreationComplete />}
         />
       </Routes>
     </Router>
