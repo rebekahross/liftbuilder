@@ -47,10 +47,7 @@ const LoginPage = () => {
             Login
           </button>
           <div>
-            Don't have an account?{" "}
-            <a className={styles.signupLink} href="/signup">
-              Sign up!
-            </a>
+            Don't have an account? <a href="/signup">Sign up!</a>
           </div>
         </div>
       </form>

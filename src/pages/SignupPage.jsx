@@ -85,10 +85,7 @@ const SignupPage = () => {
             Login
           </button>
           <div>
-            Already have an account?{" "}
-            <a className={styles.signupLink} href="/login">
-              Login!
-            </a>
+            Already have an account? <a href="/login">Login!</a>
           </div>
         </div>
       </form>

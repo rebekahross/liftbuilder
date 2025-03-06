@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ToggleSwitch from "../components/ToggleSwitch";
 import UserCreationWrapper from "../components/UserCreationWrapper";
 import UserCreationQuestion from "../components/UserCreationQuestion";
 import InputField from "../components/InputField";
@@ -12,6 +13,7 @@ const UserCreationPartFour = () => {
   const [bicepsCurl, setBicepsCurl] = useState();
   const [cleanMax, setCleanMax] = useState();
   const [calfRaise, setCalfRaise] = useState();
+  const [isPounds, setIsPounds] = useState(true);
 
   return (
     <UserCreationWrapper
@@ -59,6 +61,12 @@ const UserCreationPartFour = () => {
             type={"number"}
           />
         </div>
+        <ToggleSwitch
+          isToggled={isPounds}
+          setIsToggled={setIsPounds}
+          leftText={"Kilograms"}
+          rightText={"Pounds"}
+        />
       </UserCreationQuestion>
     </UserCreationWrapper>
   );

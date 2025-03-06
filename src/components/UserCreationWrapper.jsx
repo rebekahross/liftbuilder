@@ -7,6 +7,7 @@ const UserCreationWrapper = ({
   prevLink,
   nextLink,
   questionNumber,
+  isLastQuestion,
   children,
 }) => {
   const [firstName, setFirstName] = useState("");
@@ -27,6 +28,7 @@ const UserCreationWrapper = ({
             prevLink={prevLink}
             nextLink={nextLink}
             questionNumber={questionNumber}
+            isLastQuestion={isLastQuestion}
           />
         </div>
       </div>

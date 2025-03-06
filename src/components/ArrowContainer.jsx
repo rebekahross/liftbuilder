@@ -1,10 +1,16 @@
 import ArrowRight from "./icons/ArrowRight.jsx";
 import ArrowLeft from "./icons/ArrowLeft.jsx";
+import CheckMark from "./icons/CheckMark.jsx";
 import { useNavigate } from "react-router-dom";
 
 import styles from "./styles/arrowContainer.module.scss";
 
-const ArrowContainer = ({ questionNumber, nextLink, prevLink }) => {
+const ArrowContainer = ({
+  questionNumber,
+  nextLink,
+  prevLink,
+  isLastQuestion = false,
+}) => {
   const navigate = useNavigate();
 
   const handleNext = (e) => {
@@ -23,11 +29,15 @@ const ArrowContainer = ({ questionNumber, nextLink, prevLink }) => {
         onClick={handlePrev}
         className={`${prevLink ? styles.button : styles.noPrev}`}
       >
-        <ArrowLeft className={styles.arrow} />
+        <ArrowLeft className={styles.icon} />
       </button>
       <span>Question {questionNumber}</span>
       <button onClick={handleNext} className={styles.button}>
-        <ArrowRight className={styles.arrow} />
+        {isLastQuestion ? (
+          <CheckMark className={styles.icon} />
+        ) : (
+          <ArrowRight className={styles.icon} />
+        )}
       </button>
     </div>
   );

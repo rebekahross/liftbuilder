@@ -7,9 +7,16 @@ import SignupPage from "./pages/SignupPage";
 import UserCreationPartOne from "./pages/UserCreationPartOne";
 import UserCreationPartTwo from "./pages/UserCreationPartTwo";
 import UserCreationPartThree from "./pages/UserCreationPartThree";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import UserCreationPartFour from "./pages/UserCreationPartFour";
+import UserCreationPartFive from "./pages/UserCreationPartFive";
+import UserCreationComplete from "./pages/UserCreationComplete";
 import WorkoutPage from "./pages/WorkoutPage";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import "./index.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -24,7 +31,11 @@ root.render(
         <Route path="/user-creation-part-two" element={<UserCreationPartTwo />} />
         <Route path="/user-creation-part-three" element={<UserCreationPartThree />} />
         <Route path="/user-creation-part-four" element={<UserCreationPartFour />} />
-
+        <Route
+          path="/user-creation-part-five"
+          element={<UserCreationPartFive />}
+        />
+        <Route path="/user-creation-complete" element={<UserCreationComplete />} />
         <Route path="/loadingWorkout" element={<LoadingPage />} />
         <Route path="/workout" element={<WorkoutPage />} />
       </Routes>
