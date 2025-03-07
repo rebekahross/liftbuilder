@@ -1,0 +1,35 @@
+.headerText {
+  margin: 0;
+}
+
+.subtitleText {
+  font-size: 24px;
+}
+
+.contentWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.bodyContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 70%;
+  gap: 35px;
+}
+
+.contentContainer {
+  background-color: #fafafa;
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+  border-radius: 40px;
+  width: 750px;
+  height: 505px;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}

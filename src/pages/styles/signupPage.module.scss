@@ -1,0 +1,41 @@
+.formWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.loginContainer {
+  background-color: #fafafa;
+  display: flex;
+  flex-direction: column;
+  padding: 70px 40px;
+  gap: 10px;
+  border-radius: 40px;
+  align-items: center;
+}
+
+.logoText {
+  font-family: "Rubik Doodle Shadow", cursive;
+  font-size: 64px;
+  margin: 0;
+  padding-bottom: 50px;
+}
+
+.inputField {
+  border: none;
+  background-color: #e2e2e2;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 16px;
+}
+
+.loginButton {
+  background-color: #0066ff;
+  border: none;
+  border-radius: 999px;
+  color: #ffffff;
+  padding: 12px;
+  font-size: 18px;
+  width: 90%;
+}

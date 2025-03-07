@@ -8,6 +8,8 @@ import SignupPage from "./SignupPage";
 import UserCreationPartOne from "./UserCreationPartOne";
 import UserCreationPartTwo from "./UserCreationPartTwo";
 import UserCreationPartThree from "./UserCreationPartThree";
+import UserCreationPartFour from "./UserCreationPartFour";
+import UserCreationPartFive from "./pages/UserCreationPartFive";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -28,6 +30,14 @@ root.render(
         <Route
           path="/user-creation-part-three"
           element={<UserCreationPartThree />}
+        />
+        <Route
+          path="/user-creation-part-four"
+          element={<UserCreationPartFour />}
+        />
+        <Route
+          path="/user-creation-part-five"
+          element={<UserCreationPartFive />}
         />
       </Routes>
     </Router>

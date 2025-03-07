@@ -1,0 +1,24 @@
+.icon {
+  path {
+    fill: black;
+  }
+}
+
+.button {
+  padding: 8px 10px;
+  margin: 0;
+  border-radius: 999px;
+  border: none;
+  background: #d9d9d9;
+}
+
+.noPrev {
+  opacity: 0;
+}
+
+.nextContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+}

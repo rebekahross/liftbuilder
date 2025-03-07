@@ -1,0 +1,144 @@
+button:focus {
+  outline: none;
+}
+
+table {
+  width: 90%;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+td {
+  text-align: center;
+}
+
+tr>td {
+  padding-top: 1rem;
+}
+
+.mainDiv {
+  margin-top: 2rem;
+  transition: opacity 2s ease, transform 1s ease, margin 1s ease, height 1s ease;
+  opacity: 1;
+  transform: translateY(0);
+  overflow: hidden;
+  height: auto;
+}
+
+.mainSetsDiv {
+  border: 1px solid black;
+  border-radius: 0.5rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.sideBySide {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-right: 1rem;
+  position: relative;
+}
+
+.moreButton {
+  background: none;
+  border: none;
+  margin-left: 1rem;
+  cursor: pointer;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 50%;
+  }
+}
+
+.titleContainer {
+  transition: transform 0.3s ease-out;
+  will-change: transform;
+}
+
+.titleShifted {
+  transform: translateX(7em);
+}
+
+.optionsMenuContainer {
+  position: absolute;
+  left: 0.5em;
+  top: 0.5em;
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.menuVisible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.setNumberButton {
+  background-color: #ebebeb;
+  border: none;
+  border-radius: 0.4rem;
+  padding: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.addSetButton {
+  border: none;
+  padding: 0.5rem;
+  border-radius: 0.4rem;
+  margin-left: 4rem;
+  margin-bottom: 2rem;
+}
+
+.optionsMenu {
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  min-width: 150px;
+  
+  button {
+    display: block;
+    width: 100%;
+    padding: 8px 12px;
+    text-align: left;
+    background: none;
+    border: none;
+    cursor: pointer;
+    
+    &:hover {
+      background-color: #f5f5f5;
+    }
+    
+    &:not(:last-child) {
+      border-bottom: 1px solid #eee;
+    }
+  }
+}
+
+.redText {
+  color: red;
+}
+
+.removing {
+  opacity: 0;
+  transform: translateY(-200rem);
+  height: 0;
+  margin: 0;
+  pointer-events: none;
+}
+
+// Make sure all workout cards have transitions for moving up
+.mainDiv + .mainDiv {
+  transition: transform 1s ease, margin-top 1s ease;
+}

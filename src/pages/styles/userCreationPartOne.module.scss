@@ -1,0 +1,53 @@
+.headerText {
+  margin: 0;
+}
+
+.selected {
+  border: 2px solid red;
+  background: #0066ff;
+  padding: 12px 48px;
+  border-radius: 8px;
+  color: #ffffff;
+  width: 200px;
+  height: 45px;
+  transform: scale(1.1);
+}
+
+.headerContainer {
+  display: grid;
+  gap: 8px;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  gap: 12px;
+}
+
+.genderButton {
+  border: none;
+  padding: 12px 48px;
+  border-radius: 8px;
+  background: #0066ff;
+  color: #ffffff;
+  width: 200px;
+  height: 45px;
+}
+
+.formWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.contentContainer {
+  background-color: #fafafa;
+  display: flex;
+  flex-direction: column;
+  padding: 40px 40px 70px 40px;
+  gap: 10px;
+  border-radius: 40px;
+  width: 750px;
+}

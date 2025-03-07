@@ -10,7 +10,17 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+a {
+  color: #0066ff;
+  text-decoration: none;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+:root {
+  --gray3: #ebebeb;
+  --deepBlue: #0066FF;
 }

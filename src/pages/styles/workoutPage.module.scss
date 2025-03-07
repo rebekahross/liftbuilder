@@ -1,0 +1,131 @@
+h1 {
+  font-size: 3em;
+}
+
+hr {
+  margin-top: 2rem;
+  color: black;
+  height: 2px;
+  width: 100%;
+}
+
+button:focus {
+  outline: none;
+}
+
+.mainDiv {
+  background-color: white;
+  margin: auto;
+  padding: 0 4rem; 
+  padding-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  max-width: calc(min(80rem, 80vw));
+  width: 90%;
+  min-height: calc(100vh - 0rem); /* TODO: set the subtracted end to the height of the navbar when it's built */
+}
+
+.llmResponse {
+  background-color: var(--gray3);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  line-height: 1.5em;
+}
+
+.inputWithSubmitButton {
+  background-color: var(--gray3);
+  border-radius: 1rem;
+  display: flex;
+  padding: 1rem; 
+}
+
+.mediumTextInput {
+  background-color: var(--gray3);
+  border: none;
+  flex: 1;
+  margin-right: 1rem;
+  resize: none;
+}
+
+.mediumTextInput::-webkit-scrollbar {
+  display: none;
+}
+
+.mediumTextInput:focus {
+  outline: none;
+}
+
+.regenerateButton {
+  background-color: var(--deepBlue);
+  border-radius: 0.4rem;
+  border: none;
+  color: white;
+  padding: 1rem;
+  width: 10rem;
+}
+
+.basicFlex {
+  display: flex;
+  align-items: center;
+}
+
+.pauseButton {
+  border-radius: 0.4rem;
+  border: none;
+  padding: 0.5rem;
+  margin-right: 1em;
+}
+
+.durationTitle {
+  margin-right: 1rem;
+}
+
+.workoutTime {
+  color: var(--deepBlue)
+}
+
+.bottomButtons {
+  margin: auto;
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+}
+
+.addWorkoutButton {
+  border: none;
+  border-radius: 0.4rem;
+  padding: 1rem;
+  width: 15rem;
+  margin-right: 1rem;
+}
+
+.finishButton {
+  background-color: var(--deepBlue);
+  color: white;
+  border: none;
+  border-radius: 0.4rem;
+  padding: 1rem;
+  width: 15rem;
+  margin-left: 1rem;
+}
+
+.workoutCardContainer {
+  transition: opacity 0.5s ease, transform 0.5s ease, margin 0.5s ease, height 0.5s ease;
+  opacity: 1;
+  transform: translateY(0);
+  overflow: hidden;
+  height: auto;
+  margin-bottom: 1rem; // Adjust based on your existing spacing
+}
+
+.removing {
+  opacity: 0;
+  transform: translateY(-20px);
+  height: 0;
+  margin: 0;
+  pointer-events: none; // Prevent interaction while animating out
+}
+
+// Make sure all workout cards have transitions for moving up
+.workoutCardContainer + .workoutCardContainer {
+  transition: transform 0.5s ease, margin-top 0.5s ease;
+}

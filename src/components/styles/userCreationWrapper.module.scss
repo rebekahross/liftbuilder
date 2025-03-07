@@ -1,0 +1,37 @@
+.headerText {
+  margin: 0;
+}
+
+.headerContainer {
+  display: grid;
+  gap: 8px;
+}
+
+.contentWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.bodyContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+}
+
+.childrenContainer {
+  flex: 1;
+}
+
+.contentContainer {
+  background-color: #fafafa;
+  display: flex;
+  flex-direction: column;
+  padding: 40px 40px 70px 40px;
+  gap: 10px;
+  border-radius: 40px;
+  width: 750px;
+  height: 505px;
+}

@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import ArrowContainer from "./ArrowContainer";
 
-import styles from "./userCreationWrapper.module.scss";
+import styles from "./styles/userCreationWrapper.module.scss";
 
 const UserCreationWrapper = ({
   prevLink,
   nextLink,
   questionNumber,
+  isLastQuestion,
   children,
 }) => {
   const [firstName, setFirstName] = useState("");
@@ -27,6 +28,7 @@ const UserCreationWrapper = ({
             prevLink={prevLink}
             nextLink={nextLink}
             questionNumber={questionNumber}
+            isLastQuestion={isLastQuestion}
           />
         </div>
       </div>
