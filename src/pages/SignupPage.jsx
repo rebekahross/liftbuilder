@@ -10,20 +10,46 @@ const SignupPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  const handleSignup = (e) => {
+  const handleSignup = async (e) => {
     e.preventDefault();
-    if (
-      firstName === "firstName" &&
-      lastName === "lastName" &&
-      email === "admin@example.com" &&
-      password === "password" &&
-      confirmPassword === "password"
-    ) {
-      navigate("/user-creation-part-one");
-    } else {
-      alert("Invalid credentials");
+
+    if (password !== confirmPassword) {
+      return alert("Passwords do not match");
+    }
+
+    setLoading(true);
+    setError(null);
+
+    try {
+      const response = await fetch("http://localhost:5001/api/auth/signUp", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          firstName,
+          lastName,
+          email,
+          password,
+        }),
+      });
+
+      const data = await response.json();
+      console.log(data);
+
+      if (response.ok) {
+        navigate("/user-creation-part-one");
+      } else {
+        setError(data.message || "Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      setError("Server error. Please try again later.");
+    } finally {
+      setLoading(false);
     }
   };
 
