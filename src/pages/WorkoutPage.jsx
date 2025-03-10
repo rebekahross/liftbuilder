@@ -131,6 +131,18 @@ export default function WorkoutPage() {
             field1: "10",
             field2: "105 Lbs",
           },
+          {
+            setComplete: false,
+            prev: "12 x 95 Lbs",
+            field1: "10",
+            field2: "105 Lbs",
+          },
+          {
+            setComplete: false,
+            prev: "12 x 95 Lbs",
+            field1: "10",
+            field2: "105 Lbs",
+          },
         ],
       },
       {
@@ -150,6 +162,12 @@ export default function WorkoutPage() {
             field1: "18",
             field2: "Bodyweight + 25 Lbs",
           },
+          {
+            setComplete: false,
+            prev: "20 x Bodyweight",
+            field1: "18",
+            field2: "Bodyweight + 25 Lbs",
+          },
         ],
       },
       {
@@ -161,6 +179,18 @@ export default function WorkoutPage() {
             setComplete: false,
             prev: "10 x 135 Lbs",
             field1: "10",
+            field2: "155 Lbs",
+          },
+          {
+            setComplete: false,
+            prev: "10 x 135 Lbs",
+            field1: "8",
+            field2: "155 Lbs",
+          },
+          {
+            setComplete: false,
+            prev: "10 x 135 Lbs",
+            field1: "8",
             field2: "155 Lbs",
           },
           {
@@ -201,6 +231,12 @@ export default function WorkoutPage() {
             field1: "12",
             field2: "75 Lbs",
           },
+          {
+            setComplete: false,
+            prev: "15 x 70 Lbs",
+            field1: "12",
+            field2: "75 Lbs",
+          },
         ],
       },
       {
@@ -229,6 +265,12 @@ export default function WorkoutPage() {
             setComplete: false,
             prev: "15 x 60 Lbs",
             field1: "15",
+            field2: "65 Lbs",
+          },
+          {
+            setComplete: false,
+            prev: "15 x 60 Lbs",
+            field1: "12",
             field2: "65 Lbs",
           },
           {

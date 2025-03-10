@@ -3,13 +3,26 @@
   background-color: #cccccc;
   top: 0;
   right: 0;
-  width: 100%;
+  width: calc(100% - 3rem);
+  padding: 0 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .navTitle {
   margin: 0.5rem;
+  background: none;
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 2rem;
+  margin: 0;
 }
 
-h2 {
-  font-size: 2rem;
+.profileButton {
+  background: none;
+  margin: 0;
+  padding-right: 0;
 }
+
