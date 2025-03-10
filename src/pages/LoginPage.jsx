@@ -9,13 +9,26 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    if (email === "admin@example.com" && password === "password") {
-      alert("Login successful!");
-      navigate("/");
+
+    console.log('logging in');
+
+    const response = await fetch('http://localhost:5001/api/auth/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, password }),
+    });
+
+    const data = await response.json();
+    console.log('data', data);
+
+    if (response.ok) {
+      navigate('/');
     } else {
-      alert("Invalid credentials");
+      alert(data.message);
     }
   };
 
