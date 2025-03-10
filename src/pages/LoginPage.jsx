@@ -11,15 +11,24 @@ const LoginPage = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email: email,
-      password: password,
-    })
 
-    if (error) {
-      alert(error);
-    } else {
+    console.log('logging in');
+
+    const response = await fetch('http://localhost:5001/api/auth/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, password }),
+    });
+
+    const data = await response.json();
+    console.log('data', data);
+
+    if (response.ok) {
       navigate('/');
+    } else {
+      alert(data.message);
     }
   };
 
