@@ -4,8 +4,8 @@ import { useCallback, useEffect, useRef, useState } from "react"
 import { restTimeOptions } from "../models/dropdownOptions"
 import SelectDropdown from "./SelectDropdown"
 import RangeSlider from "./RangeSlider"
-import GreenCheck from "./icons/GreenCheck"
-import ThreeDots from "./icons/ThreeDots"
+import GreenCheck from "../icons/GreenCheck"
+import ThreeDots from "../icons/ThreeDots"
 
 import styles from "./styles/workoutCard.module.scss"
 

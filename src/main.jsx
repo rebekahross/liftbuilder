@@ -18,6 +18,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import "./index.css";
+import WorkoutHistory from "./pages/WorkoutHistory";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -31,13 +32,11 @@ root.render(
         <Route path="/user-creation-part-two" element={<UserCreationPartTwo />} />
         <Route path="/user-creation-part-three" element={<UserCreationPartThree />} />
         <Route path="/user-creation-part-four" element={<UserCreationPartFour />} />
-        <Route
-          path="/user-creation-part-five"
-          element={<UserCreationPartFive />}
-        />
+        <Route path="/user-creation-part-five" element={<UserCreationPartFive />} />
         <Route path="/user-creation-complete" element={<UserCreationComplete />} />
-        <Route path="/loadingWorkout" element={<LoadingPage />} />
+        <Route path="/loading-workout" element={<LoadingPage />} />
         <Route path="/workout" element={<WorkoutPage />} />
+        <Route path="/workout-history" element={<WorkoutHistory />} />
       </Routes>
     </Router>
   </React.StrictMode>

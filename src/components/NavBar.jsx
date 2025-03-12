@@ -1,5 +1,5 @@
 import styles from "./styles/navBar.module.scss";
-import Profile from "./icons/Profile";
+import Profile from "../icons/Profile";
 import { useNavigate } from "react-router-dom";
 
 export default function NavBar() {

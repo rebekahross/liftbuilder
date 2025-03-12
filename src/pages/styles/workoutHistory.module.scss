@@ -1,0 +1,30 @@
+.mainDiv {
+  width: 100%;
+}
+
+.mainInnerBox {
+  background-color: white;
+  margin: auto;
+  margin-top: calc(4rem + 5vh);
+  width: 80vw;
+  min-height: calc(90vh - 4rem);
+  max-width: 90rem;
+  border-radius: 1.7rem;
+}
+
+.boxHeader {
+  display: flex;
+  justify-content: space-between;
+}
+
+.backButton {
+  margin: 1rem;
+  border-radius: 50%;
+}
+
+h1 {
+  flex: 1;
+  text-align: center;
+  margin-right: 6rem;
+  margin-top: 2rem;
+}
