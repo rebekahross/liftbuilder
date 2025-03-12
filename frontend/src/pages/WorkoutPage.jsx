@@ -3,13 +3,10 @@ import WorkoutCard from "../components/WorkoutCard";
 import RestTimerModal from "../components/RestTimerModal";
 import NavBar from "../components/NavBar";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState, useCallback } from "react";
-import dayjs from "dayjs";
-import duration from "dayjs/plugin/duration";
-
-dayjs.extend(duration);
-
+import { useEffect, useState } from "react";
 import styles from "./styles/workoutPage.module.scss";
+import formatElapsedTimeString from "../components/utilities/formatElapsedTimeString";
+import formatCurrentDayTimeString from "../components/utilities/formatCurrentDayTimeString";
 
 
 export default function WorkoutPage() {
@@ -22,81 +19,16 @@ export default function WorkoutPage() {
 
   const navigate = useNavigate()
 
-  const generateCurrentTimeString = () => {
-    const weekdays = [
-      "Sunday",
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-    ];
-    const currentHourNumber = dayjs().hour();
-    const currentDayNumber = dayjs().day();
-
-    let timeOfDayString;
-    switch (true) {
-      case currentHourNumber < 6:
-        timeOfDayString = "Night";
-        break;
-      case currentHourNumber < 12:
-        timeOfDayString = "Morning";
-        break;
-      case currentHourNumber < 18:
-        timeOfDayString = "Afternoon";
-        break;
-      default:
-        timeOfDayString = "Evening";
-        break;
-    }
-
-    return `${weekdays[currentDayNumber]} ${timeOfDayString}`;
-  };
-
   const handleRegenerate = () => {
     navigate('/loadingWorkout')
   }
-
-  const formatElapsedTime = (seconds) => {
-    const duration = dayjs.duration(seconds, "seconds");
-
-    let resultStrings = [];
-    if (duration.hours() > 0) {
-      if (duration.hours() === 1) {
-        resultStrings.push("1 Hour");
-      } else {
-        resultStrings.push(`${duration.hours()} Hours`)
-      }
-    }
-    if (duration.minutes() > 0) {
-      if (duration.minutes() === 1) {
-        resultStrings.push("1 Minute")
-      } else {
-        resultStrings.push(`${duration.minutes()} Minutes`)
-      }
-    }
-    if (duration.seconds() > 0) {
-      if (duration.seconds() === 1) {
-        resultStrings.push("1 Second")
-      } else {
-        resultStrings.push(`${duration.seconds()} Seconds`)
-      }
-    }
-
-    if (resultStrings.length === 0) {
-      return 'Start Timer Above'
-    }
-
-    return resultStrings.join(', ')
-  };
 
   const handleRest = (restTime) => {
     setRestTimerTime(restTime)
   }
 
   useEffect(() => {
-    setCurrentDateString(generateCurrentTimeString());
+    setCurrentDateString(formatCurrentDayTimeString());
 
     // TODO: Dynamically wire these up
 
@@ -358,7 +290,7 @@ export default function WorkoutPage() {
             </>
           )}
         </div>
-        <a className={styles.workoutTime}>{formatElapsedTime(elapsedTime)}</a>
+        <a className={styles.workoutTime}>{formatElapsedTimeString(elapsedTime)}</a>
       </div>
       {workoutSets.map((item, index) => {
         const isRemoving = removingIndices.includes(index);
@@ -379,7 +311,7 @@ export default function WorkoutPage() {
                 setTimeout(() => {
                   setWorkoutSets((previous) => previous.filter((_, i) => i !== index));
                   setRemovingIndices((prev) => prev.filter((i) => i !== index));
-                }, 500); // Match this to your CSS transition duration
+                }, 500);
               }}
               onSubmitRest={(restTime) => handleRest(restTime)}
             />

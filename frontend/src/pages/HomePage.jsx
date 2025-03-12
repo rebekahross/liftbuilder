@@ -8,7 +8,7 @@ export default function HomePage({ userFirstName }) {
 
   const handleBuildLift = () => {
     console.log("sign of life");
-    navigate("/loadingWorkout");
+    navigate("/loading-workout");
   };
 
   return (

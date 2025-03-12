@@ -12,9 +12,8 @@ export default function WorkoutHistory ({ }) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    
+    setHistoryData([{}, {}])
   }, [])
-
 
   return (
     <div className={styles.mainDiv}>
@@ -29,7 +28,6 @@ export default function WorkoutHistory ({ }) {
           {historyData.map((card) => {
             return <WorkoutHistoryCard />
           })}
-
         </div>
       </div>
 
