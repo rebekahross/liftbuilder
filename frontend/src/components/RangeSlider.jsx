@@ -3,10 +3,10 @@ import { Range } from "react-range";
 
 import styles from "./styles/rangeSlider.module.scss";
 
-const RangeSlider = ({ leftLabel, centerLabel, rightLabel, step = 25 }) => {
-  const [values, setValues] = React.useState([50]);
+const RangeSlider = ({ leftLabel, centerLabel, rightLabel, step = 25, isMutable = true, initialValue = 50, className = {} }) => {
+  const [values, setValues] = React.useState([initialValue]);
   return (
-    <div className={styles.sliderContainer}>
+    <div className={`${styles.sliderContainer} ${className}`}>
       <div className={styles.slider}>
         <Range
           label="Select your value"
@@ -14,7 +14,7 @@ const RangeSlider = ({ leftLabel, centerLabel, rightLabel, step = 25 }) => {
           min={0}
           max={100}
           values={values}
-          onChange={(values) => setValues(values)}
+          onChange={isMutable ? (values) => setValues(values) : () => {}}
           renderTrack={({ props, children }) => (
             <div {...props} className={styles.sliderLine}>
               {children}

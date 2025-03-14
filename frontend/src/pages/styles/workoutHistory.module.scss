@@ -6,6 +6,7 @@
   background-color: white;
   margin: auto;
   margin-top: calc(4rem + 5vh);
+  margin-bottom: 5vh;
   width: 80vw;
   min-height: calc(90vh - 4rem);
   max-width: 90rem;
@@ -29,4 +30,13 @@
   text-align: center;
   margin-right: 6rem;
   margin-top: 2rem;
+}
+
+.workoutHistoryCards h3 {
+  text-align: center;
+  height: 50%;
+}
+
+.workoutHistoryCards {
+  padding-bottom: 1rem;
 }

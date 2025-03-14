@@ -31,8 +31,7 @@ export default function WorkoutPage() {
     setCurrentDateString(formatCurrentDayTimeString());
 
     // TODO: Dynamically wire these up
-
-    setWorkoutSets([
+    const dummyData = [
       {
         title: "Treadmill Warm-Up",
         initRestTime: 0,
@@ -213,7 +212,9 @@ export default function WorkoutPage() {
           },
         ],
       },
-    ]);
+    ]
+
+    setWorkoutSets(dummyData);
   }, []);
 
   useEffect(() => {
