@@ -8,7 +8,7 @@ export default function HomePage({ userFirstName }) {
 
   const handleBuildLift = () => {
     console.log("sign of life");
-    navigate("/loadingWorkout");
+    navigate("/loading-workout");
   };
 
   return (
@@ -23,7 +23,7 @@ export default function HomePage({ userFirstName }) {
         >
           Build a Lift
         </button>
-        <button className={styles.smallerButton}>See Workout History</button>
+        <button className={styles.smallerButton} onClick={() => navigate('/workout-history')}>See Workout History</button>
         <button className={styles.smallerButton}>Edit My Profile</button>
       </div>
     </div>

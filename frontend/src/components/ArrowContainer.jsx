@@ -1,6 +1,6 @@
-import ArrowRight from "./icons/ArrowRight.jsx";
-import ArrowLeft from "./icons/ArrowLeft.jsx";
-import CheckMark from "./icons/CheckMark.jsx";
+import ArrowRight from "../icons/ArrowRight.jsx";
+import ArrowLeft from "../icons/ArrowLeft.jsx";
+import CheckMark from "../icons/CheckMark.jsx";
 import { useNavigate } from "react-router-dom";
 
 import styles from "./styles/arrowContainer.module.scss";

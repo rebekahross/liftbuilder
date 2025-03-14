@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import styles from "./styles/restTimerModal.module.scss";
-import Timer from "./icons/Timer";
+import Timer from "../icons/Timer";
 
 const RestTimerModal = ({ startTime, onExit }) => {
   const [timeRemaining, setTimeRemaining] = useState(startTime * 60);
