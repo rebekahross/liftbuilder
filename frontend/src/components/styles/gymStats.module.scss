@@ -1,0 +1,20 @@
+.gymStats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  align-self: center;
+  padding-bottom: 16px;
+  width: 100%;
+}
+
+.gymStatsContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: flex-start;
+}
+
+.toggleContainer {
+  display: flex;
+  justify-content: flex-end;
+}

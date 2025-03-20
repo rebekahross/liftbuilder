@@ -94,16 +94,26 @@ export const weightOptions = [
   { label: "350+ lbs (158+ kg)", value: "350+" },
 ];
 
+export const genderOptions = [
+  { label: "Female", value: "Female" },
+  { label: "Male", value: "Male" },
+  { label: "Prefer not to say", value: "Prefer not to say" },
+];
+
 const restTimeOptionsList = Array.from({ length: 120 }, (_, i) => {
   const totalSeconds = (i + 1) * 5;
   const minutes = Math.floor(totalSeconds / 60);
   const seconds = totalSeconds % 60;
-  const label = minutes > 0 
-    ? seconds > 0 
-      ? `${minutes} Minute${minutes > 1 ? 's' : ''} ${seconds} Seconds`
-      : `${minutes} Minute${minutes > 1 ? 's' : ''}`
-    : `${seconds} Seconds`;
+  const label =
+    minutes > 0
+      ? seconds > 0
+        ? `${minutes} Minute${minutes > 1 ? "s" : ""} ${seconds} Seconds`
+        : `${minutes} Minute${minutes > 1 ? "s" : ""}`
+      : `${seconds} Seconds`;
   return { label, value: totalSeconds / 60 };
 });
 
-export const restTimeOptions = [{ label: 'None', value: 0 }, ...restTimeOptionsList]
+export const restTimeOptions = [
+  { label: "None", value: 0 },
+  ...restTimeOptionsList,
+];

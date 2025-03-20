@@ -9,7 +9,7 @@ const InputField = ({ label, value, setValue, type, placeholder = "" }) => {
 
   return (
     <div className={styles.inputContainer}>
-      {label && <label>{label}</label>}
+      {label && <label className={styles.inputLabel}>{label}</label>}
       <input
         type={type}
         className={styles.input}

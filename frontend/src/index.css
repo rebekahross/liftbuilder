@@ -20,7 +20,15 @@ code {
     monospace;
 }
 
+details {
+  width: 100%;
+
+  summary {
+    list-style: none;
+  }
+}
+
 :root {
   --gray3: #ebebeb;
-  --deepBlue: #0066FF;
+  --deepBlue: #0066ff;
 }

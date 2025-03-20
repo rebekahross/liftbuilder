@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import SubmitButton from "../components/SubmitButton";
+import InputField from "../components/InputField";
 
 import styles from "./styles/loginPage.module.scss";
 
@@ -12,21 +13,21 @@ const LoginPage = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    console.log('logging in');
+    console.log("logging in");
 
-    const response = await fetch('http://localhost:5001/api/auth/login', {
-      method: 'POST',
+    const response = await fetch("http://localhost:5001/api/auth/login", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({ email, password }),
     });
 
     const data = await response.json();
-    console.log('data', data);
+    console.log("data", data);
 
     if (response.ok) {
-      navigate('/');
+      navigate("/");
     } else {
       alert(data.message);
     }
@@ -37,24 +38,18 @@ const LoginPage = () => {
       <form onSubmit={handleLogin} className={styles.formWrapper}>
         <div className={styles.loginContainer}>
           <h1 className={styles.logoText}>LiftBuilder</h1>
-          <div>
-            <input
-              type="email"
-              placeholder="Email"
+          <div className={styles.inputField}>
+            <InputField
+              label={"Email"}
+              type={"email"}
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              className={styles.inputField}
+              setValue={setEmail}
             />
-          </div>
-          <div>
-            <input
-              type="password"
-              placeholder="Password"
+            <InputField
+              label={"Password"}
+              type={"password"}
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              className={styles.inputField}
+              setValue={setPassword}
             />
           </div>
           <SubmitButton text={"Login"} />

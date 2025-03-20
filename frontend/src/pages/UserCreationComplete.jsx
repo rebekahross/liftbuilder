@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import SubmitButton from "../components/SubmitButton";
 
 import styles from "./styles/userCreationComplete.module.scss";
@@ -12,8 +12,8 @@ const UserCreationComplete = ({}) => {
           <div className={styles.subtitleText}>
             Now that we've gotten to know you, let's build you some lifts!
           </div>
-          <SubmitButton text={"Let's go!"} />
-          <a className={styles.link} href="/user-creation-part-one">
+          <SubmitButton href={"/"} text={"Let's go!"} />
+          <a className={styles.link} href={"/user-creation-part-one"}>
             Back to questions
           </a>
         </div>

@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import HomePage from "./pages/HomePage";
-import LoadingPage from "./pages/LoadingPage"
+import LoadingPage from "./pages/LoadingPage";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import UserCreationPartOne from "./pages/UserCreationPartOne";
@@ -11,6 +11,7 @@ import UserCreationPartFour from "./pages/UserCreationPartFour";
 import UserCreationPartFive from "./pages/UserCreationPartFive";
 import UserCreationComplete from "./pages/UserCreationComplete";
 import WorkoutPage from "./pages/WorkoutPage";
+import ManageProfilePage from "./pages/ManageProfilePage";
 import {
   BrowserRouter as Router,
   Routes,
@@ -28,15 +29,34 @@ root.render(
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
-        <Route path="/user-creation-part-one" element={<UserCreationPartOne />} />
-        <Route path="/user-creation-part-two" element={<UserCreationPartTwo />} />
-        <Route path="/user-creation-part-three" element={<UserCreationPartThree />} />
-        <Route path="/user-creation-part-four" element={<UserCreationPartFour />} />
-        <Route path="/user-creation-part-five" element={<UserCreationPartFive />} />
-        <Route path="/user-creation-complete" element={<UserCreationComplete />} />
+        <Route
+          path="/user-creation-part-one"
+          element={<UserCreationPartOne />}
+        />
+        <Route
+          path="/user-creation-part-two"
+          element={<UserCreationPartTwo />}
+        />
+        <Route
+          path="/user-creation-part-three"
+          element={<UserCreationPartThree />}
+        />
+        <Route
+          path="/user-creation-part-four"
+          element={<UserCreationPartFour />}
+        />
+        <Route
+          path="/user-creation-part-five"
+          element={<UserCreationPartFive />}
+        />
+        <Route
+          path="/user-creation-complete"
+          element={<UserCreationComplete />}
+        />
         <Route path="/loading-workout" element={<LoadingPage />} />
         <Route path="/workout" element={<WorkoutPage />} />
         <Route path="/workout-history" element={<WorkoutHistory />} />
+        <Route path="/manage-profile" element={<ManageProfilePage />} />
       </Routes>
     </Router>
   </React.StrictMode>

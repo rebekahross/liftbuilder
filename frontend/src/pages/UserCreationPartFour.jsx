@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import ToggleSwitch from "../components/ToggleSwitch";
+import GymStats from "../components/GymStats";
 import UserCreationWrapper from "../components/UserCreationWrapper";
 import UserCreationQuestion from "../components/UserCreationQuestion";
-import InputField from "../components/InputField";
 
 import styles from "./styles/userCreationPartFour.module.scss";
 
@@ -22,51 +21,24 @@ const UserCreationPartFour = () => {
       questionNumber={4}
     >
       <UserCreationQuestion question={"What are some of your gym stats?"}>
-        <div className={styles.gymStats}>
-          <InputField
-            label={"Bench press 1RM"}
-            value={benchPress}
-            setValue={setBenchPress}
-            type={"number"}
-          />
-          <InputField
-            label={"Back squat 1RM"}
-            value={squat}
-            setValue={setSquat}
-            type={"number"}
-          />
-          <InputField
-            label={"Mile time"}
-            value={mileTime}
-            setValue={setMileTime}
-            type={"text"}
-            placeholder={"MM:SS.sss"}
-          />
-          <InputField
-            label={"1-arm bicep curl 1RM"}
-            value={bicepsCurl}
-            setValue={setBicepsCurl}
-            type={"number"}
-          />
-          <InputField
-            label={"Power clean 1RM"}
-            value={cleanMax}
-            setValue={setCleanMax}
-            type={"number"}
-          />
-          <InputField
-            label={"Calf raise 1RM"}
-            value={calfRaise}
-            setValue={setCalfRaise}
-            type={"number"}
+        <div>
+          <GymStats
+            benchPress={benchPress}
+            setBenchPress={setBenchPress}
+            squat={squat}
+            setSquat={setSquat}
+            mileTime={mileTime}
+            setMileTime={setMileTime}
+            bicepsCurl={bicepsCurl}
+            setBicepsCurl={setBicepsCurl}
+            cleanMax={cleanMax}
+            setCleanMax={setCleanMax}
+            calfRaise={calfRaise}
+            setCalfRaise={setCalfRaise}
+            isPounds={isPounds}
+            setIsPounds={setIsPounds}
           />
         </div>
-        <ToggleSwitch
-          isToggled={isPounds}
-          setIsToggled={setIsPounds}
-          leftText={"Kilograms"}
-          rightText={"Pounds"}
-        />
       </UserCreationQuestion>
     </UserCreationWrapper>
   );

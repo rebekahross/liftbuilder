@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import SubmitButton from "../components/SubmitButton";
+import InputField from "../components/InputField";
 
 import styles from "./styles/signupPage.module.scss";
 
@@ -58,54 +59,37 @@ const SignupPage = () => {
       <form onSubmit={handleSignup} className={styles.formWrapper}>
         <div className={styles.loginContainer}>
           <h1 className={styles.logoText}>LiftBuilder</h1>
-          <div>
-            <input
-              type="name"
-              placeholder="First Name"
+
+          <div className={styles.inputField}>
+            <InputField
+              label={"First Name"}
+              type={"text"}
               value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
-              required
-              className={styles.inputField}
+              setValue={setFirstName}
             />
-          </div>
-          <div>
-            <input
-              type="name"
-              placeholder="Last Name"
+            <InputField
+              label={"Last Name"}
+              type={"text"}
               value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
-              required
-              className={styles.inputField}
+              setValue={setLastName}
             />
-          </div>
-          <div>
-            <input
-              type="email"
-              placeholder="Email"
+            <InputField
+              label={"Email"}
+              type={"email"}
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              className={styles.inputField}
+              setValue={setEmail}
             />
-          </div>
-          <div>
-            <input
-              type="password"
-              placeholder="Password"
+            <InputField
+              label={"Password"}
+              type={"password"}
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              className={styles.inputField}
+              setValue={setPassword}
             />
-          </div>
-          <div>
-            <input
-              type="password"
-              placeholder="Confirm Password"
+            <InputField
+              label={"Confirm Password"}
+              type={"password"}
               value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              required
-              className={styles.inputField}
+              setValue={setConfirmPassword}
             />
           </div>
           <SubmitButton text={"Submit"} />

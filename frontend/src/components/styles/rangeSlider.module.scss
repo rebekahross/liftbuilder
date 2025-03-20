@@ -3,7 +3,9 @@
   flex-direction: column;
   justify-content: center;
   width: 100%;
-  padding-top: 84px;
+  border-radius: 8px;
+  padding: 40px 20px 20px;
+  background-color: #ececec;
 }
 
 .slider {
@@ -28,6 +30,7 @@
 .sliderLabels {
   display: flex;
   justify-content: space-between;
-  width: 100%;
   padding-top: 36px;
+  opacity: 80%;
+  font-size: 12px;
 }

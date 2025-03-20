@@ -1,12 +1,26 @@
 .input {
   background: #ececec;
-  padding: 12px;
   border: none;
   border-radius: 8px;
+  padding: 1.5px;
+
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+.inputLabel {
+  display: flex;
+  opacity: 48%;
+  font-size: 12px;
 }
 
 .inputContainer {
   display: flex;
   flex-direction: column;
   gap: 4px;
+  justify-content: flex-start;
+  background: #ececec;
+  border-radius: 8px;
+  padding: 8px;
 }

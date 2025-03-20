@@ -23,8 +23,18 @@ export default function HomePage({ userFirstName }) {
         >
           Build a Lift
         </button>
-        <button className={styles.smallerButton} onClick={() => navigate('/workout-history')}>See Workout History</button>
-        <button className={styles.smallerButton}>Edit My Profile</button>
+        <button
+          className={styles.smallerButton}
+          onClick={() => navigate("/workout-history")}
+        >
+          See Workout History
+        </button>
+        <button
+          className={styles.smallerButton}
+          onClick={() => navigate("/manage-profile")}
+        >
+          Edit My Profile
+        </button>
       </div>
     </div>
   );

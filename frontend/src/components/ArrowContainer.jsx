@@ -1,7 +1,5 @@
-import ArrowRight from "../icons/ArrowRight.jsx";
-import ArrowLeft from "../icons/ArrowLeft.jsx";
-import CheckMark from "../icons/CheckMark.jsx";
 import { useNavigate } from "react-router-dom";
+import ArrowButton from "./ArrowButton.jsx";
 
 import styles from "./styles/arrowContainer.module.scss";
 
@@ -25,20 +23,16 @@ const ArrowContainer = ({
 
   return (
     <div className={styles.nextContainer}>
-      <button
+      <ArrowButton
+        showButton={prevLink ? true : false}
+        arrowDirection={"left"}
         onClick={handlePrev}
-        className={`${prevLink ? styles.button : styles.noPrev}`}
-      >
-        <ArrowLeft className={styles.icon} />
-      </button>
+      />
       <span>Question {questionNumber}</span>
-      <button onClick={handleNext} className={styles.button}>
-        {isLastQuestion ? (
-          <CheckMark className={styles.icon} />
-        ) : (
-          <ArrowRight className={styles.icon} />
-        )}
-      </button>
+      <ArrowButton
+        onClick={handleNext}
+        arrowDirection={isLastQuestion ? "check" : "right"}
+      />
     </div>
   );
 };

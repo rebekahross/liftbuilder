@@ -13,11 +13,13 @@ const UserCreationPartThree = () => {
       prevLink="/user-creation-part-two"
     >
       <UserCreationQuestion question={"What is your current fitness level?"}>
-        <RangeSlider
-          leftLabel={"Ultra beginner"}
-          centerLabel={"Fitness enthusiast"}
-          rightLabel={"Pro athlete"}
-        />
+        <div className={styles.rangeSliderBox}>
+          <RangeSlider
+            leftLabel={"Ultra beginner"}
+            centerLabel={"Fitness enthusiast"}
+            rightLabel={"Pro athlete"}
+          />
+        </div>
       </UserCreationQuestion>
     </UserCreationWrapper>
   );

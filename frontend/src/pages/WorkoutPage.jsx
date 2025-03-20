@@ -4,10 +4,10 @@ import RestTimerModal from "../components/RestTimerModal";
 import NavBar from "../components/NavBar";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import styles from "./styles/workoutPage.module.scss";
 import formatElapsedTimeString from "../components/utilities/formatElapsedTimeString";
 import formatCurrentDayTimeString from "../components/utilities/formatCurrentDayTimeString";
 
+import styles from "./styles/workoutPage.module.scss";
 
 export default function WorkoutPage() {
   const [currentDateString, setCurrentDateString] = useState("");
@@ -17,15 +17,15 @@ export default function WorkoutPage() {
   const [removingIndices, setRemovingIndices] = useState([]);
   const [restTimerTime, setRestTimerTime] = useState(0);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleRegenerate = () => {
-    navigate('/loadingWorkout')
-  }
+    navigate("/loadingWorkout");
+  };
 
   const handleRest = (restTime) => {
-    setRestTimerTime(restTime)
-  }
+    setRestTimerTime(restTime);
+  };
 
   useEffect(() => {
     setCurrentDateString(formatCurrentDayTimeString());
@@ -212,7 +212,7 @@ export default function WorkoutPage() {
           },
         ],
       },
-    ]
+    ];
 
     setWorkoutSets(dummyData);
   }, []);
@@ -232,20 +232,28 @@ export default function WorkoutPage() {
   return (
     <div className={styles.mainDiv}>
       <NavBar />
-      {(restTimerTime != 0) && (<RestTimerModal startTime={restTimerTime} onExit={() => {setRestTimerTime(0)}}/>)}
+      {restTimerTime != 0 && (
+        <RestTimerModal
+          startTime={restTimerTime}
+          onExit={() => {
+            setRestTimerTime(0);
+          }}
+        />
+      )}
       <div className={styles.overviewPanel}>
         <h1>{currentDateString} Workout Plan</h1>
         <p className={styles.llmResponse}>
-          This is some base text to see how it all looks. TODO: fix this. Today's workout
-          will be a combination of cardio work and strength training, with particular
-          focus on your legs and hips. We'll start off with a 15-minute warm up on the
-          treadmill, followed by some Romanian Deadlifts. From there we'll do some Calf
-          Raises, then work the quad muscles with some Barbell Squats. Make sure you use a
-          pad for your shoulders, and consider using a waist strap to keep your back
-          straight. After the Squats, we'll do some work on the Elliptical Machine to
-          lengthen your quads and mobilize your hips. We'll then do a compound set of Hip
-          Abductor Extensions and Wall Sits, followed by our final set of Hip Adductor
-          Extensions.{" "}
+          This is some base text to see how it all looks. TODO: fix this.
+          Today's workout will be a combination of cardio work and strength
+          training, with particular focus on your legs and hips. We'll start off
+          with a 15-minute warm up on the treadmill, followed by some Romanian
+          Deadlifts. From there we'll do some Calf Raises, then work the quad
+          muscles with some Barbell Squats. Make sure you use a pad for your
+          shoulders, and consider using a waist strap to keep your back
+          straight. After the Squats, we'll do some work on the Elliptical
+          Machine to lengthen your quads and mobilize your hips. We'll then do a
+          compound set of Hip Abductor Extensions and Wall Sits, followed by our
+          final set of Hip Adductor Extensions.{" "}
         </p>
         <h4>Would you like to adjust anything in this plan?</h4>
         <div className={styles.inputWithSubmitButton}>
@@ -254,7 +262,12 @@ export default function WorkoutPage() {
             className={styles.mediumTextInput}
             placeholder="Add your comments here"
           />
-          <button className={styles.regenerateButton} onClick={() => handleRegenerate()}>Regenerate</button>
+          <button
+            className={styles.regenerateButton}
+            onClick={() => handleRegenerate()}
+          >
+            Regenerate
+          </button>
         </div>
       </div>
       <hr />
@@ -285,13 +298,18 @@ export default function WorkoutPage() {
               >
                 Resume
               </button>
-              <button className={styles.pauseButton} onClick={() => setElapsedTime(0)}>
+              <button
+                className={styles.pauseButton}
+                onClick={() => setElapsedTime(0)}
+              >
                 Reset
               </button>
             </>
           )}
         </div>
-        <a className={styles.workoutTime}>{formatElapsedTimeString(elapsedTime)}</a>
+        <a className={styles.workoutTime}>
+          {formatElapsedTimeString(elapsedTime)}
+        </a>
       </div>
       {workoutSets.map((item, index) => {
         const isRemoving = removingIndices.includes(index);
@@ -310,7 +328,9 @@ export default function WorkoutPage() {
 
                 // Then actually remove it after the animation completes
                 setTimeout(() => {
-                  setWorkoutSets((previous) => previous.filter((_, i) => i !== index));
+                  setWorkoutSets((previous) =>
+                    previous.filter((_, i) => i !== index)
+                  );
                   setRemovingIndices((prev) => prev.filter((i) => i !== index));
                 }, 500);
               }}
@@ -326,7 +346,7 @@ export default function WorkoutPage() {
           onClick={() => {
             setIsWorkoutActive(false);
             // Add any other finish workout logic here
-            navigate('/')
+            navigate("/");
           }}
         >
           Finish Workout

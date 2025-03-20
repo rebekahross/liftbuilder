@@ -1,0 +1,88 @@
+.headerText {
+  margin: 0;
+  flex: 1;
+}
+
+.subtitleText {
+  font-size: 24px;
+}
+
+.contentWrapper {
+  display: flex;
+  justify-content: center;
+  padding: 100px 0 60px 0;
+}
+
+.contactBodyInfo {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  width: 100%;
+  column-gap: 32px;
+  padding-top: 16px;
+  padding-bottom: 24px;
+}
+
+.headerContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding-bottom: 20px;
+}
+
+.fitnessGoals {
+  width: 100%;
+}
+
+.rangeSliderContainer {
+  display: flex;
+  width: 100%;
+  padding-bottom: 16px;
+}
+
+.gymStats {
+  display: flex;
+  width: 100%;
+}
+
+.profileInfoLabelSection {
+  display: flex;
+  width: 100%;
+  text-transform: uppercase;
+  opacity: 49%;
+  font-size: 14px;
+  padding-bottom: 8px;
+  padding-top: 24px;
+}
+
+.bodyContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.manageProfileColumns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 16px;
+  column-gap: 32px;
+  width: 100%;
+}
+
+.contentContainer {
+  background-color: #fafafa;
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+  border-radius: 40px;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  width: 100%;
+  margin: 0 120px;
+}
+
+.saveButtonContainer {
+  width: 70%;
+}
