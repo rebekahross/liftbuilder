@@ -9,6 +9,11 @@
   text-align: center;
 }
 
+.buttonsContainer {
+  display: grid;
+  gap: 16px;
+}
+
 .mainPage {
   position: absolute;
   display: flex;

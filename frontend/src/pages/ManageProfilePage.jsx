@@ -85,18 +85,21 @@ const ManageProfilePage = ({}) => {
               options={genderOptions}
               value={gender}
               setValue={setGender}
+              placeholder={"Select Gender"}
             />
             <SelectDropdown
               label={"Height"}
               options={heightOptions}
               value={height}
               setValue={setHeight}
+              placeholder={"Select Height"}
             />
             <SelectDropdown
               label={"Weight"}
               options={weightOptions}
               value={weight}
               setValue={setWeight}
+              placeholder={"Select Weight"}
             />
           </div>
           <div className={styles.profileInfoLabelSection}>Fitness Goals</div>
@@ -134,7 +137,10 @@ const ManageProfilePage = ({}) => {
             setIsPounds={setIsPounds}
           />
           <div className={styles.saveButtonContainer}>
-            <SubmitButton text={"Save changes"} />
+            <button className={styles.cancelButton} type={"reset"}>
+              Cancel
+            </button>
+            <SubmitButton type={"submit"} text={"Save changes"} />
           </div>
         </div>
       </div>

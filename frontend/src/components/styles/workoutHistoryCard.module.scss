@@ -9,8 +9,12 @@
   position: relative;
 }
 
+.rangeSliderContainer {
+  display: flex;
+}
+
 .detailsCard {
-  background-color: #EBF3FF;
+  background-color: #ebf3ff;
   margin: 2rem;
   padding: 1rem;
   padding-top: 2.5rem;
@@ -53,7 +57,7 @@
 
 .difficultyRange {
   pointer-events: none;
-  padding-top: 1rem;
+  padding-top: 3.5rem;
 }
 
 .workoutsGrid {
@@ -96,4 +100,3 @@
   margin-top: 0;
   font-size: 1rem;
 }
-

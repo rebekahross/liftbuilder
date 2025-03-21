@@ -12,12 +12,13 @@ export default function WorkoutHistoryCard({ workoutData }) {
   let [isOpened, setOpened] = useState(false);
   // Potential Feature - add a difficulty slider to each of the workout entries
 
-
   // Computed Values
   // Schema I'm expecting =
   // { title: string, date: string, yield: string, durationSeconds: number, difficultyPercentage: number,
   // setData: [{ title: string, fields: [string], sets: [field1: string, field2?: string, field3?: string] }] }
-  const workoutDurationString = formatElapsedTimeString(workoutData.durationSeconds);
+  const workoutDurationString = formatElapsedTimeString(
+    workoutData.durationSeconds
+  );
 
   return (
     <div className={styles.cardOutline}>
@@ -52,13 +53,17 @@ export default function WorkoutHistoryCard({ workoutData }) {
         className={styles.detailsCard}
       >
         <h2>Average Difficulty</h2>
-        <RangeSlider
-          step={12.5}
-          isMutable={false}
-          initialValue={workoutData.difficultyPercentage}
-          className={styles.difficultyRange}
-        />
-        <h2 style={{marginTop: 0, marginBottom: 0, fontSize: '2rem'}}>Workouts</h2>
+        <div className={styles.rangeSliderContainer}>
+          <RangeSlider
+            step={12.5}
+            isMutable={false}
+            initialValue={workoutData.difficultyPercentage}
+            className={styles.difficultyRange}
+          />
+        </div>
+        <h2 style={{ marginTop: 0, marginBottom: 0, fontSize: "2rem" }}>
+          Workouts
+        </h2>
         <br></br>
         <div className={styles.workoutsGrid}>
           {workoutData.setData.map((workout) => {
@@ -66,7 +71,11 @@ export default function WorkoutHistoryCard({ workoutData }) {
               <div className={styles.gridEntry}>
                 <div className={styles.entryHeader}>
                   <h3>{workout.title}</h3>
-                  <h6>{workout.sets.length > 1 ? `${workout.sets.length} Sets` : `1 Set`}</h6>
+                  <h6>
+                    {workout.sets.length > 1
+                      ? `${workout.sets.length} Sets`
+                      : `1 Set`}
+                  </h6>
                 </div>
                 <table>
                   <thead>

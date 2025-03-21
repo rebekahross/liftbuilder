@@ -1,5 +1,4 @@
 export const heightOptions = [
-  { label: "Select Height", value: "" },
   { label: "4'0\" (122 cm)", value: "122" },
   { label: "4'1\" (124 cm)", value: "124" },
   { label: "4'2\" (127 cm)", value: "127" },
@@ -38,7 +37,6 @@ export const heightOptions = [
 ];
 
 export const weightOptions = [
-  { label: "Select Weight", value: "" },
   { label: "90 lbs (40.82 kg)", value: "90" },
   { label: "95 lbs (43.09 kg)", value: "95" },
   { label: "100 lbs (45.36 kg)", value: "100" },

@@ -2,6 +2,10 @@
   background: #ececec;
   border: none;
   border-radius: 8px;
+
+  &:focus-visible {
+    outline: none;
+  }
 }
 
 .dropdownLabel {

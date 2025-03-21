@@ -85,4 +85,13 @@
 
 .saveButtonContainer {
   width: 70%;
+  display: flex;
+  gap: 16px;
+}
+
+.cancelButton {
+  border-radius: 999px;
+  padding: 0 80px;
+  background-color: #ececec;
+  cursor: pointer;
 }

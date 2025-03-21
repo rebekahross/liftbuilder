@@ -21,7 +21,7 @@ const UserCreationPartFour = () => {
       questionNumber={4}
     >
       <UserCreationQuestion question={"What are some of your gym stats?"}>
-        <div>
+        <div className={styles.gymStatsContainer}>
           <GymStats
             benchPress={benchPress}
             setBenchPress={setBenchPress}
