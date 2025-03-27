@@ -1,0 +1,409 @@
+LiftBuilder API Reference
+Authentication
+All API requests (except auth endpoints) require authentication via JWT token in the Authorization header.
+Login
+POST /api/auth/login
+Request Body:
+{
+  "email": "user@example.com",
+  "password": "password123"
+}
+Response:
+{
+  "user": {
+    "session": {
+      "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6...",
+      "refresh_token": "..."
+    },
+    "user": {
+      "id": "uuid",
+      "email": "user@example.com",
+      "role": "authenticated"
+    }
+  }
+}
+Sign Up
+POST /api/auth/signUp
+Request Body:
+{
+  "firstName": "John",
+  "lastName": "Doe",
+  "email": "user@example.com",
+  "password": "password123"
+}
+Response:
+{
+  "user": {
+    "session": {
+      "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6...",
+      "refresh_token": "..."
+    },
+    "user": {
+      "id": "uuid",
+      "email": "user@example.com",
+      "role": "authenticated"
+    }
+  }
+}
+Workouts
+Get All Workouts
+GET /api/workouts
+Headers:
+Authorization: Bearer <token>
+Response:
+{
+  "data": [
+    {
+      "id": "uuid",
+      "title": "Leg Day",
+      "description": "Focus on lower body",
+      "created_at": "2023-04-01T12:00:00Z",
+      "completed_at": null,
+      "duration_seconds": null,
+      "difficulty_rating": null,
+      "is_active": true
+    }
+  ]
+}
+Get Active Workout
+GET /api/workouts/active
+Headers:
+Authorization: Bearer <token>
+Response:
+{
+  "data": {
+    "id": "uuid",
+    "title": "Leg Day",
+    "description": "Focus on lower body",
+    "created_at": "2023-04-01T12:00:00Z",
+    "duration_seconds": null,
+    "setData": [
+      {
+        "id": "uuid",
+        "title": "Squats",
+        "initRestTime": 90,
+        "fields": ["Reps", "Weight"],
+        "sets": [
+          {
+            "setComplete": false,
+            "prev": "10 x 135 Lbs",
+            "field1": "10",
+            "field2": "155 Lbs"
+          }
+        ],
+        "note": "Keep back straight"
+      }
+    ]
+  }
+}
+Get Workout by ID
+GET /api/workouts/:id
+Headers:
+Authorization: Bearer <token>
+Response: Same format as active workout
+Create Workout
+POST /api/workouts
+Headers:
+Authorization: Bearer <token>
+Request Body:
+{
+  "title": "Upper Body",
+  "description": "Focus on chest and arms",
+  "exercises": [
+    {
+      "exercise_id": "uuid",
+      "rest_time": 60,
+      "note": "Focus on form",
+      "sets": [
+        {
+          "field1": "10",
+          "field2": "135 Lbs",
+          "setComplete": false
+        }
+      ]
+    }
+  ]
+}
+Response:
+{
+  "data": {
+    "id": "uuid",
+    "title": "Upper Body",
+    "description": "Focus on chest and arms",
+    "created_at": "2023-04-01T12:00:00Z",
+    "duration_seconds": null,
+    "setData": [...]
+  }
+}
+Update Workout
+PUT /api/workouts/:id
+Headers:
+Authorization: Bearer <token>
+Request Body:
+{
+  "title": "Updated Title",
+  "description": "Updated description",
+  "exercises": [...]
+}
+Response: Same format as create workout
+Delete Workout
+DELETE /api/workouts/:id
+Headers:
+Authorization: Bearer <token>
+Response:
+{
+  "message": "Workout deleted successfully"
+}
+Complete Workout
+POST /api/workouts/:id/complete
+Headers:
+Authorization: Bearer <token>
+Request Body:
+{
+  "duration_seconds": 3600,
+  "difficulty_rating": 7,
+  "exercises": [
+    {
+      "id": "uuid",
+      "weight": 135,
+      "reps": 10,
+      "difficulty_rating": 6
+    }
+  ]
+}
+Response:
+{
+  "data": {
+    "id": "uuid",
+    "title": "Leg Day",
+    "completed_at": "2023-04-01T13:00:00Z",
+    "duration_seconds": 3600,
+    "difficulty_rating": 7,
+    "is_active": false,
+    "setData": [...]
+  }
+}
+Exercises
+Get All Exercises
+GET /api/exercises
+Headers:
+Authorization: Bearer <token>
+Response:
+{
+  "data": [
+    {
+      "id": "uuid",
+      "name": "Bench Press",
+      "description": "Chest exercise using a barbell",
+      "category": "Chest",
+      "target_muscles": ["Chest", "Triceps", "Shoulders"],
+      "measurement_type": "weight_reps",
+      "default_sets": 3,
+      "default_rest_time": 90
+    }
+  ]
+}
+Get Exercise by ID
+GET /api/exercises/:id
+Headers:
+Authorization: Bearer <token>
+Response:
+{
+  "data": {
+    "id": "uuid",
+    "name": "Bench Press",
+    "description": "Chest exercise using a barbell",
+    "category": "Chest",
+    "target_muscles": ["Chest", "Triceps", "Shoulders"],
+    "measurement_type": "weight_reps",
+    "default_sets": 3,
+    "default_rest_time": 90
+  }
+}
+Get Exercises by Category
+GET /api/exercises/category/:category
+Headers:
+Authorization: Bearer <token>
+Response: Same format as get all exercises, filtered by category
+Get User Exercise Settings
+GET /api/exercises/settings
+Headers:
+Authorization: Bearer <token>
+Response:
+{
+  "data": [
+    {
+      "id": "uuid",
+      "exercise_id": "uuid",
+      "preferred_weight": 135,
+      "preferred_reps": 10,
+      "preferred_sets": 3,
+      "preferred_rest_time": 90,
+      "last_difficulty_rating": 6,
+      "exercises": {
+        "id": "uuid",
+        "name": "Bench Press",
+        "category": "Chest",
+        "measurement_type": "weight_reps"
+      }
+    }
+  ]
+}
+Update User Exercise Settings
+PUT /api/exercises/settings/:exerciseId
+Headers:
+Authorization: Bearer <token>
+Request Body:
+{
+  "preferred_weight": 145,
+  "preferred_reps": 8,
+  "preferred_sets": 4,
+  "preferred_rest_time": 120,
+  "last_difficulty_rating": 7
+}
+Response:
+{
+  "data": {
+    "id": "uuid",
+    "exercise_id": "uuid",
+    "preferred_weight": 145,
+    "preferred_reps": 8,
+    "preferred_sets": 4,
+    "preferred_rest_time": 120,
+    "last_difficulty_rating": 7
+  }
+}
+Profile
+Get User Profile
+GET /api/profile
+Headers:
+Authorization: Bearer <token>
+Response:
+{
+  "data": {
+    "id": "uuid",
+    "first_name": "John",
+    "last_name": "Doe",
+    "email": "user@example.com"
+  }
+}
+Update User Profile
+PUT /api/profile
+Headers:
+Authorization: Bearer <token>
+Request Body:
+{
+  "first_name": "John",
+  "last_name": "Smith",
+  "email": "john.smith@example.com"
+}
+Response:
+{
+  "data": {
+    "id": "uuid",
+    "first_name": "John",
+    "last_name": "Smith",
+    "email": "john.smith@example.com"
+  }
+}
+Get User Metrics
+GET /api/profile/metrics
+Headers:
+Authorization: Bearer <token>
+Response:
+{
+  "data": {
+    "id": "uuid",
+    "associated_user_id": "uuid",
+    "height": 180,
+    "weight": 80,
+    "sex": "Male",
+    "fitness_level": 7,
+    "bench_max": 100,
+    "squat_max": 150,
+    "mile_time": 480,
+    "bicep_curl_max": 20,
+    "power_clean_max": 80,
+    "calf_raise_max": 120
+  }
+}
+Update User Metrics
+PUT /api/profile/metrics
+Headers:
+Authorization: Bearer <token>
+Request Body:
+{
+  "height": 180,
+  "weight": 82,
+  "sex": "Male",
+  "fitness_level": 8,
+  "bench_max": 110,
+  "squat_max": 160,
+  "mile_time": 460,
+  "bicep_curl_max": 22,
+  "power_clean_max": 85,
+  "calf_raise_max": 125
+}
+Response:
+{
+  "data": {
+    "id": "uuid",
+    "associated_user_id": "uuid",
+    "height": 180,
+    "weight": 82,
+    "sex": "Male",
+    "fitness_level": 8,
+    "bench_max": 110,
+    "squat_max": 160,
+    "mile_time": 460,
+    "bicep_curl_max": 22,
+    "power_clean_max": 85,
+    "calf_raise_max": 125
+  }
+}
+Workout History
+Get Workout History
+GET /api/workout-history
+Headers:
+Authorization: Bearer <token>
+Response:
+{
+  "data": [
+    {
+      "id": "uuid",
+      "title": "Leg Day",
+      "date": "Mar 8, 2023",
+      "yield": "42000 Lbs",
+      "durationSeconds": 3750,
+      "difficultyPercentage": 75
+    }
+  ]
+}
+Get Workout History Detail
+GET /api/workout-history/:id
+Headers:
+Authorization: Bearer <token>
+Response:
+{
+  "data": {
+    "id": "uuid",
+    "title": "Leg Day",
+    "date": "Mar 8, 2023",
+    "yield": "42000 Lbs",
+    "durationSeconds": 3750,
+    "difficultyPercentage": 75,
+    "setData": [
+      {
+        "title": "Squats",
+        "fields": ["Reps", "Weight"],
+        "sets": [
+          {
+            "field1": "10",
+            "field2": "155 Lbs"
+          }
+        ]
+      }
+    ]
+  }
+}
+
