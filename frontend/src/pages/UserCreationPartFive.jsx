@@ -7,24 +7,17 @@ import styles from "./styles/userCreationPartFive.module.scss";
 
 const UserCreationPartFive = () => {
   const [textInput, setTextInput] = useState("");
+
+  const handleGoalInput = (goalInput) => {
+    console.log("Goals:", goalInput);
+    setTextInput(goalInput);
+    localStorage.setItem("goals", goalInput);
+  };
   return (
-    <UserCreationWrapper
-      prevLink={"/user-creation-part-four"}
-      nextLink={"/user-creation-complete"}
-      isLastQuestion={true}
-      questionNumber={5}
-    >
-      <UserCreationQuestion
-        question={"Please describe your overall fitness goals."}
-      >
+    <UserCreationWrapper prevLink={"/user-creation-part-four"} nextLink={"/user-creation-complete"} isLastQuestion={true} questionNumber={5}>
+      <UserCreationQuestion question={"Please describe your overall fitness goals."}>
         <div>
-          <LargeInputBox
-            value={textInput}
-            setValue={setTextInput}
-            subtitle={
-              "Be as descriptive as you can so we can tailor your workouts to your needs. For example, are you training for strength, endurance, hypertrophy, or a combination of these?"
-            }
-          />
+          <LargeInputBox value={textInput} setValue={setTextInput} subtitle={"Be as descriptive as you can so we can tailor your workouts to your needs. For example, are you training for strength, endurance, hypertrophy, or a combination of these?"} onChange={handleGoalInput} />
         </div>
       </UserCreationQuestion>
     </UserCreationWrapper>

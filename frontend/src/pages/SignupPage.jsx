@@ -42,6 +42,11 @@ const SignupPage = () => {
       const data = await response.json();
       console.log(data);
 
+      console.log("authToken", data.user.session.access_token);
+
+      const token = data.user.session.access_token;
+      localStorage.setItem("authToken", token);
+
       if (response.ok) {
         navigate("/user-creation-part-one");
       } else {
@@ -61,36 +66,11 @@ const SignupPage = () => {
           <h1 className={styles.logoText}>LiftBuilder</h1>
 
           <div className={styles.inputField}>
-            <InputField
-              label={"First Name"}
-              type={"text"}
-              value={firstName}
-              setValue={setFirstName}
-            />
-            <InputField
-              label={"Last Name"}
-              type={"text"}
-              value={lastName}
-              setValue={setLastName}
-            />
-            <InputField
-              label={"Email"}
-              type={"email"}
-              value={email}
-              setValue={setEmail}
-            />
-            <InputField
-              label={"Password"}
-              type={"password"}
-              value={password}
-              setValue={setPassword}
-            />
-            <InputField
-              label={"Confirm Password"}
-              type={"password"}
-              value={confirmPassword}
-              setValue={setConfirmPassword}
-            />
+            <InputField label={"First Name"} type={"text"} value={firstName} setValue={setFirstName} />
+            <InputField label={"Last Name"} type={"text"} value={lastName} setValue={setLastName} />
+            <InputField label={"Email"} type={"email"} value={email} setValue={setEmail} />
+            <InputField label={"Password"} type={"password"} value={password} setValue={setPassword} />
+            <InputField label={"Confirm Password"} type={"password"} value={confirmPassword} setValue={setConfirmPassword} />
           </div>
           <SubmitButton text={"Submit"} />
           <div>

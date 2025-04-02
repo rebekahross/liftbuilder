@@ -14,27 +14,59 @@ const UserCreationPartFour = () => {
   const [calfRaise, setCalfRaise] = useState();
   const [isPounds, setIsPounds] = useState(true);
 
+  const handleBenchPressSelect = (selectedBenchPress) => {
+    console.log("Bench Press:", selectedBenchPress);
+    setBenchPress(selectedBenchPress);
+    localStorage.setItem("benchPress", selectedBenchPress);
+  };
+
+  const handleSquatSelect = (selectedSquat) => {
+    console.log("Squat:", selectedSquat);
+    setSquat(selectedSquat);
+    localStorage.setItem("squat", selectedSquat);
+  };
+
+  const handleMileTimeSelect = (selectedMileTime) => {
+    console.log("Mile Time:", selectedMileTime);
+    setMileTime(selectedMileTime);
+    localStorage.setItem("mileTime", selectedMileTime);
+  };
+
+  const handleBicepsCurlSelect = (selectedBicepsCurl) => {
+    console.log("Biceps Curl:", selectedBicepsCurl);
+    setBicepsCurl(selectedBicepsCurl);
+    localStorage.setItem("bicepsCurl", selectedBicepsCurl);
+  };
+
+  const handleCleanMaxSelect = (selectedCleanMax) => {
+    console.log("Clean Max:", selectedCleanMax);
+    setCleanMax(selectedCleanMax);
+    localStorage.setItem("cleanMax", selectedCleanMax);
+  };
+
+  const handleCalfRaiseSelect = (selectedCalfRaise) => {
+    console.log("Calf Raise:", selectedCalfRaise);
+    setCalfRaise(selectedCalfRaise);
+    localStorage.setItem("calfRaise", selectedCalfRaise);
+  };
+
   return (
-    <UserCreationWrapper
-      prevLink={"/user-creation-part-three"}
-      nextLink={"/user-creation-part-five"}
-      questionNumber={4}
-    >
+    <UserCreationWrapper prevLink={"/user-creation-part-three"} nextLink={"/user-creation-part-five"} questionNumber={4}>
       <UserCreationQuestion question={"What are some of your gym stats?"}>
         <div className={styles.gymStatsContainer}>
           <GymStats
             benchPress={benchPress}
-            setBenchPress={setBenchPress}
+            setBenchPress={handleBenchPressSelect}
             squat={squat}
-            setSquat={setSquat}
+            setSquat={handleSquatSelect}
             mileTime={mileTime}
-            setMileTime={setMileTime}
+            setMileTime={handleMileTimeSelect}
             bicepsCurl={bicepsCurl}
-            setBicepsCurl={setBicepsCurl}
+            setBicepsCurl={handleBicepsCurlSelect}
             cleanMax={cleanMax}
-            setCleanMax={setCleanMax}
+            setCleanMax={handleCleanMaxSelect}
             calfRaise={calfRaise}
-            setCalfRaise={setCalfRaise}
+            setCalfRaise={handleCalfRaiseSelect}
             isPounds={isPounds}
             setIsPounds={setIsPounds}
           />
