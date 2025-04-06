@@ -115,3 +115,16 @@ export const restTimeOptions = [
   { label: "None", value: 0 },
   ...restTimeOptionsList,
 ];
+
+export const workoutTimeOptionsList = Array.from({ length: 120 }, (_, i) => {
+  const totalMinutes = (i + 1) * 5;
+  const totalHours = Math.floor(totalMinutes / 60);
+  const seconds = totalMinutes % 60;
+  const label =
+    totalHours > 0
+      ? seconds > 0
+        ? `${totalHours} Hour${totalHours > 1 ? "s" : ""} ${seconds} Minutes`
+        : `${totalHours} Hour${totalHours > 1 ? "s" : ""}`
+      : `${seconds} Minutes`;
+  return { label, value: totalMinutes / 60 };
+});

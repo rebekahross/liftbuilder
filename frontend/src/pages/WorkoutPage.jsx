@@ -2,7 +2,7 @@
 import WorkoutCard from "../components/WorkoutCard";
 import RestTimerModal from "../components/RestTimerModal";
 import NavBar from "../components/NavBar";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import formatElapsedTimeString from "../components/utilities/formatElapsedTimeString";
 import formatCurrentDayTimeString from "../components/utilities/formatCurrentDayTimeString";
@@ -16,11 +16,12 @@ export default function WorkoutPage() {
   const [workoutSets, setWorkoutSets] = useState([]);
   const [removingIndices, setRemovingIndices] = useState([]);
   const [restTimerTime, setRestTimerTime] = useState(0);
+  const { id } = useParams();
 
   const navigate = useNavigate();
 
   const handleRegenerate = () => {
-    navigate("/loadingWorkout");
+    navigate("/loading-workout");
   };
 
   const handleRest = (restTime) => {
@@ -28,9 +29,11 @@ export default function WorkoutPage() {
   };
 
   useEffect(() => {
+    // TODO: move this functionality to the backend?
     setCurrentDateString(formatCurrentDayTimeString());
 
     // TODO: Dynamically wire these up
+    // const fetchResult = await fetch('getWorkout/${id}', {})
     const dummyData = [
       {
         title: "Treadmill Warm-Up",

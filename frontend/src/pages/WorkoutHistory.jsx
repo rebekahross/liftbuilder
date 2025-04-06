@@ -11,6 +11,7 @@ export default function WorkoutHistory({}) {
 
   const navigate = useNavigate();
 
+  // On page initialization, pull history data
   useEffect(() => {
     const dummyData = {
       title: "Saturday Morning Workout",
@@ -152,7 +153,7 @@ export default function WorkoutHistory({}) {
       ],
     };
 
-    setHistoryData([dummyData]);
+    setHistoryData([dummyData, dummyData, dummyData]);
   }, []);
 
   return (
