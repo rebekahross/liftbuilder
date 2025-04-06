@@ -9,7 +9,7 @@ import styles from "./styles/preWorkoutForm.module.scss";
 import { workoutTimeOptionsList } from "../models/dropdownOptions";
 import { useNavigate } from "react-router-dom";
 
-export default function PreWorkoutForm() {
+export default function PreWorkoutForm({}) {
   const navigate = useNavigate();
 
   // TODO: Set these using a global auth state

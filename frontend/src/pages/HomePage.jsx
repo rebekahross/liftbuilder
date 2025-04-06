@@ -5,10 +5,9 @@ import styles from "./styles/homePage.module.scss";
 
 export default function HomePage({}) {
   const navigate = useNavigate();
-  const isAuthenticated = false;
+  const isAuthenticated = true;
 
   const handleBuildLift = () => {
-    console.log("sign of life");
     navigate("/pre-workout");
   };
 
