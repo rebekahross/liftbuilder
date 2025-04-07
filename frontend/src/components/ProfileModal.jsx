@@ -5,9 +5,15 @@ import { useNavigate } from "react-router-dom";
 
 export default function ProfileModal({ onExit }) {
   const navigate = useNavigate();
-  // TODO: Set these variables from some auth state
-  const isAuthenticated = false;
-  const username = "jessicaDaCoolest";
+
+  const userDataString = localStorage.getItem("user");
+  const userData = JSON.parse(userDataString);
+  let username;
+  let isAuthenticated = false;
+  if (userData?.sub != null) {
+    isAuthenticated = true;
+    username = userData.email ?? "";
+  }
 
   const handleSignIn = () => {
     navigate("/login");
@@ -15,12 +21,26 @@ export default function ProfileModal({ onExit }) {
   const handleCreateAccount = () => {
     navigate("/signup");
   };
+  const handleEditAccount = () => {
+    navigate("/manage-profile");
+  };
+  const handleSignOut = () => {
+    localStorage.removeItem('user');
+    localStorage.removeItem('authToken');
+    onExit();
+    navigate('/');
+  }
 
   if (isAuthenticated) {
     return (
       <div className={styles.profileModalBox}>
-        <h4>User: {username}</h4>
-        <button className={styles.modalButton}>Edit Account</button>
+        {username && <h4>User: {username}</h4>}
+        <button className={styles.modalButton} onClick={() => handleEditAccount()}>
+          Edit Account
+        </button>
+        <button className={styles.modalButton} onClick={() => handleSignOut()}>
+          Sign Out
+        </button>
       </div>
     );
   } else {

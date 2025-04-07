@@ -40,12 +40,11 @@ const SignupPage = () => {
       });
 
       const data = await response.json();
-      console.log(data);
 
-      console.log("authToken", data.user.session.access_token);
-
-      const token = data.user.session.access_token;
-      localStorage.setItem("authToken", token);
+      if (data?.user.user.id != null) {
+        localStorage.setItem('user', JSON.stringify(data.user.user.user_metadata))
+        localStorage.setItem("authToken", data.user.session.access_token);
+      }
 
       if (response.ok) {
         navigate("/user-creation-part-one");

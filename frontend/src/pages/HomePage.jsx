@@ -5,13 +5,19 @@ import styles from "./styles/homePage.module.scss";
 
 export default function HomePage({}) {
   const navigate = useNavigate();
-  const isAuthenticated = true;
+  const userDataString = localStorage.getItem("user");
+  const userData = JSON.parse(userDataString);
+  let userFirstName;
+  let isAuthenticated = false;
+  if (userData?.sub != null) {
+    isAuthenticated = true;
+    userFirstName = userData.first_name ?? '';
+  }
 
   const handleBuildLift = () => {
     navigate("/pre-workout");
   };
 
-  const userFirstName = "Rebekah";
 
   return (
     <div className={styles.mainPage}>
