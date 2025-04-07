@@ -55,6 +55,7 @@ root.render(
           element={<UserCreationComplete />}
         />
         <Route path="/pre-workout" element={<PreWorkoutForm />} />
+        <Route path="/loading-workout" element={<PreWorkoutForm startLoading={true} />} />
         <Route path="/workout/:id" element={<WorkoutPage />} />
         <Route path="/workout-history" element={<WorkoutHistory />} />
         <Route path="/manage-profile" element={<ManageProfilePage />} />

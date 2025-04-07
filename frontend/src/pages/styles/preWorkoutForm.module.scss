@@ -11,7 +11,7 @@
   align-items: center;
   flex: 1;
   justify-content: space-evenly;
-  padding-bottom: 2rem;
+  padding: 2rem;
 }
 
 .preWorkoutForm label {
@@ -25,7 +25,8 @@
   background-color: #ebebeb;
   border: none;
   border-radius: 0.6rem;
-  width: 60vw;
+  width: 50vw;
+  min-width: 15rem;
   min-height: 8vh;
   padding: 1rem;
 }

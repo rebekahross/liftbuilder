@@ -9,11 +9,11 @@ import styles from "./styles/preWorkoutForm.module.scss";
 import { workoutTimeOptionsList } from "../models/dropdownOptions";
 import { useNavigate } from "react-router-dom";
 
-export default function PreWorkoutForm({}) {
+export default function PreWorkoutForm({ startLoading }) {
   const navigate = useNavigate();
 
   // TODO: Set these using a global auth state
-  const [workoutLoading, setWorkoutLoading] = useState(false);
+  const [workoutLoading, setWorkoutLoading] = useState(startLoading ?? false);
   const [workOnToday, setWorkOnToday] = useState('');
   const [avoid, setAvoid] = useState('');
   const [workoutTime, setWorkoutTime] = useState(1); // NOTE: this will return in hours, so 30 minutes = 0.5
