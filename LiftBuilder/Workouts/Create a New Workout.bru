@@ -1,0 +1,54 @@
+meta {
+  name: Create a New Workout
+  type: http
+  seq: 4
+}
+
+post {
+  url: http://localhost:5001/api/workouts
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "title": "Saturday Afternoon Workout",
+    "description": "This is a super fascinating description that Ai came up with! I have no idea what I should be putting here to be hones",
+    "exercises": [
+      {
+        "exercise_id": "d89173db-03ae-47d8-862c-479f9577ab5b",
+        "rest_time": 2,
+        "note": "your mom",
+        "sets": [
+          {
+            "setComplete": false,
+            "field1": 10,
+            "field2": "130 Lbs"
+          },
+          {
+            "setComplete": false,
+            "field1": 10,
+            "field2": "130 Lbs"
+          },
+          {
+            "setComplete": false,
+            "field1": 10,
+            "field2": "130 Lbs"
+          }
+        ]
+      },
+      {
+        "exercise_id": "d44c2531-dbf6-4a91-a9bf-9dec37a69885",
+        "rest_time": 2,
+        "note": "your mom",
+        "sets": [
+          {
+            "setComplete": false,
+            "field1": "10 Minutes",
+            "field2": "1 Miles"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -419,11 +419,12 @@ const modifyWorkout = async (workoutId, updates, userJwt) => {
   // If exercises are provided, handle them
   if (updates.exercises && Array.isArray(updates.exercises)) {
     // First get existing workout exercises
-    const { data: existingExercises } = await supabase
+    const result = await supabase
       .from("workout_exercises")
       .select("id, exercise_id, position")
       .eq("workout_id", workoutId)
       .order("position", { ascending: true });
+    const existingExercises = result.data;
 
     // Handle each exercise update
     await Promise.all(
@@ -505,13 +506,13 @@ const modifyWorkout = async (workoutId, updates, userJwt) => {
               }
             }
           }
-        } else if (exerciseUpdate.exercise_id) {
+        } else if (exerciseUpdate.id) {
           // This is a new exercise to add
           const { data: newExercise, error: newExerciseError } = await supabase
             .from("workout_exercises")
             .insert({
               workout_id: workoutId,
-              exercise_id: exerciseUpdate.exercise_id,
+              exercise_id: exerciseUpdate.id,
               position: index + 1,
               rest_time: exerciseUpdate.initRestTime || 60,
               note: exerciseUpdate.note || null,
@@ -527,7 +528,7 @@ const modifyWorkout = async (workoutId, updates, userJwt) => {
             const { data: exerciseDetails } = await supabase
               .from("exercises")
               .select("measurement_type")
-              .eq("id", exerciseUpdate.exercise_id)
+              .eq("id", exerciseUpdate.id)
               .single();
 
             const measurementType = exerciseDetails?.measurement_type || "weight_reps";
@@ -545,9 +546,9 @@ const modifyWorkout = async (workoutId, updates, userJwt) => {
 
     // Remove exercises that are no longer in the update
     if (existingExercises) {
-      const exerciseIdsToKeep = updates.exercises.filter((e) => e.id).map((e) => e.id);
+      const exerciseIdsToKeep = updates.exercises.map(e => e.id);
 
-      const exercisesToRemove = existingExercises.filter((e) => !exerciseIdsToKeep.includes(e.id));
+      const exercisesToRemove = existingExercises.filter((e) => !exerciseIdsToKeep.includes(e.exercise_id));
 
       if (exercisesToRemove.length > 0) {
         await supabase
@@ -562,13 +563,12 @@ const modifyWorkout = async (workoutId, updates, userJwt) => {
   }
 
   // Return the updated workout
-  return await fetchWorkoutById(workoutId, userId);
+  return await fetchWorkoutById(workoutId, userJwt);
 };
 
 // Remove a workout
 const removeWorkout = async (workoutId, userJwt) => {
   const supabase = getSupabaseInstance();
-  const userId = (await supabase.auth.getUser()).data.user.id;
 
   // First check if the workout belongs to the user
   const { data: workout, error: workoutError } = await supabase
@@ -682,7 +682,7 @@ const markWorkoutComplete = async (workoutId, completionData, userJwt) => {
   }
 
   // Return the completed workout
-  return await fetchWorkoutById(workoutId, userId);
+  return await fetchWorkoutById(workoutId, userJwt);
 };
 
 module.exports = {

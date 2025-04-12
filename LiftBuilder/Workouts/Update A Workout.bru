@@ -1,0 +1,67 @@
+meta {
+  name: Update A Workout
+  type: http
+  seq: 5
+}
+
+put {
+  url: http://localhost:5001/api/workouts/7e4ecafc-b945-4373-918c-f07d048de39b
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "exercises": [
+      {
+        "id": "921cee08-b4f0-46f9-97dd-f1b4a5720429",
+        "initRestTime": 60,
+        "note": "Focus on form",
+        "sets": [
+          {
+            "field1": "10",
+            "setComplete": false
+          }
+        ]
+      },
+      {
+        "id": "d89173db-03ae-47d8-862c-479f9577ab5b",
+        "note": "Bench Press",
+        "initRestTime": 2,
+        "sets": [
+          {
+            "setComplete": false,
+            "prev": "",
+            "field1": "10",
+            "field2": "130 Lbs"
+          },
+          {
+            "setComplete": false,
+            "prev": "",
+            "field1": "10",
+            "field2": "130 Lbs"
+          },
+          {
+            "setComplete": false,
+            "prev": "",
+            "field1": "10",
+            "field2": "130 Lbs"
+          }
+        ]
+      },
+      {
+        "id": "d44c2531-dbf6-4a91-a9bf-9dec37a69885",
+        "note": "Treadmill",
+        "initRestTime": 2,
+        "sets": [
+          {
+            "setComplete": false,
+            "prev": "",
+            "field1": "",
+            "field2": "1 Miles"
+          }
+        ]
+      }
+    ]
+  }
+}
