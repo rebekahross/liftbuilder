@@ -10,10 +10,10 @@ const {
 
 // Get all workouts for a user
 const getWorkouts = async (req, res) => {
-  const userId = req.auth.userId;
+  const userJwt = req.headers.authorization.substring(7)
   
   try {
-    const { data, error } = await fetchWorkouts(userId);
+    const { data, error } = await fetchWorkouts(userJwt);
     
     if (error) {
       return res.status(400).json({ message: error.message });
@@ -28,10 +28,10 @@ const getWorkouts = async (req, res) => {
 
 // Get a user's active workout
 const getActiveWorkout = async (req, res) => {
-  const userId = req.auth.userId;
+  const userJwt = req.headers.authorization.substring(7)
   
   try {
-    const { data, error } = await fetchActiveWorkout(userId);
+    const { data, error } = await fetchActiveWorkout(userJwt);
     
     if (error) {
       return res.status(400).json({ message: error.message });
@@ -51,10 +51,10 @@ const getActiveWorkout = async (req, res) => {
 // Get a specific workout
 const getWorkoutById = async (req, res) => {
   const { id } = req.params;
-  const userId = req.auth.userId;
+  const userJwt = req.headers.authorization.substring(7)
   
   try {
-    const { data, error } = await fetchWorkoutById(id, userId);
+    const { data, error } = await fetchWorkoutById(id, userJwt);
     
     if (error) {
       return res.status(400).json({ message: error.message });
@@ -94,10 +94,10 @@ const createWorkout = async (req, res) => {
 const updateWorkout = async (req, res) => {
   const { id } = req.params;
   const updates = req.body;
-  const userId = req.auth.userId;
+  const userJwt = req.headers.authorization.substring(7)
   
   try {
-    const { data, error } = await modifyWorkout(id, updates, userId);
+    const { data, error } = await modifyWorkout(id, updates, userJwt);
     
     if (error) {
       return res.status(400).json({ message: error.message });
@@ -117,10 +117,10 @@ const updateWorkout = async (req, res) => {
 // Delete a workout
 const deleteWorkout = async (req, res) => {
   const { id } = req.params;
-  const userId = req.auth.userId;
+  const userJwt = req.headers.authorization.substring(7)
   
   try {
-    const { success, error } = await removeWorkout(id, userId);
+    const { success, error } = await removeWorkout(id, userJwt);
     
     if (error) {
       return res.status(400).json({ message: error.message });
@@ -141,10 +141,10 @@ const deleteWorkout = async (req, res) => {
 const completeWorkout = async (req, res) => {
   const { id } = req.params;
   const completionData = req.body;
-  const userId = req.auth.userId;
+  const userJwt = req.headers.authorization.substring(7)
   
   try {
-    const { data, error } = await markWorkoutComplete(id, completionData, userId);
+    const { data, error } = await markWorkoutComplete(id, completionData, userJwt);
     
     if (error) {
       return res.status(400).json({ message: error.message });
