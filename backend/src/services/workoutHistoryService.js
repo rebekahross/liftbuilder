@@ -1,4 +1,4 @@
-const supabase = require('./dbService');
+const getSupabaseInstance = require('./dbService');
 
 // Format timestamp to date string
 const formatDateString = (timestamp) => {
@@ -40,6 +40,7 @@ const formatElapsedTimeString = (seconds) => {
 // Fetch workout history for a user
 const fetchWorkoutHistory = async (userId) => {
   // Fetch completed workouts
+  const supabase = getSupabaseInstance()
   const { data: workouts, error } = await supabase
     .from('workouts')
     .select('*')
@@ -77,6 +78,7 @@ const fetchWorkoutHistory = async (userId) => {
 
 // Fetch detailed workout history for a specific workout
 const fetchWorkoutHistoryDetail = async (workoutId, userId) => {
+  const supabase = getSupabaseInstance()
   // Check if the workout belongs to the user
   const { data: workout, error: workoutError } = await supabase
     .from('workouts')

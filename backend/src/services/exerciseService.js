@@ -1,7 +1,9 @@
-const supabase = require('./dbService');
+const getSupabaseInstance = require('./dbService');
 
 // Fetch all exercises
 const fetchAllExercises = async () => {
+  const supabase = getSupabaseInstance()
+
   const { data, error } = await supabase
     .from('exercises')
     .select('*')
@@ -12,6 +14,8 @@ const fetchAllExercises = async () => {
 
 // Fetch a specific exercise
 const fetchExerciseById = async (exerciseId) => {
+  const supabase = getSupabaseInstance()
+
   const { data, error } = await supabase
     .from('exercises')
     .select('*')
@@ -23,6 +27,8 @@ const fetchExerciseById = async (exerciseId) => {
 
 // Fetch exercises by category
 const fetchExercisesByCategory = async (category) => {
+  const supabase = getSupabaseInstance()
+
   const { data, error } = await supabase
     .from('exercises')
     .select('*')
@@ -34,6 +40,8 @@ const fetchExercisesByCategory = async (category) => {
 
 // Fetch user exercise settings
 const fetchUserExerciseSettings = async (userId) => {
+  const supabase = getSupabaseInstance()
+
   const { data, error } = await supabase
     .from('user_exercise_settings')
     .select(`
@@ -58,6 +66,8 @@ const fetchUserExerciseSettings = async (userId) => {
 
 // Update user exercise settings
 const updateExerciseSettings = async (userId, exerciseId, settingsData) => {
+  const supabase = getSupabaseInstance()
+
   // Check if settings already exist
   const { data: existingSettings, error: checkError } = await supabase
     .from('user_exercise_settings')

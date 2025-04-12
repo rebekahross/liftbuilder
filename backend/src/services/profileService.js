@@ -1,7 +1,9 @@
-const supabase = require("./dbService");
+const getSupabaseInstance = require("./dbService");
 
 // Fetch user profile
 const fetchUserProfile = async (userId) => {
+  const supabase = getSupabaseInstance()
+
   const { data, error } = await supabase.from("profiles").select("*").eq("id", userId).single();
 
   return { data, error };
@@ -9,6 +11,8 @@ const fetchUserProfile = async (userId) => {
 
 // Update user profile
 const updateProfile = async (userId, profileData) => {
+  const supabase = getSupabaseInstance()
+
   const { data, error } = await supabase
     .from("profiles")
     .update({
@@ -25,6 +29,8 @@ const updateProfile = async (userId, profileData) => {
 
 // Fetch user metrics
 const fetchUserMetrics = async (userId) => {
+  const supabase = getSupabaseInstance()
+
   const { data, error } = await supabase.from("user_metrics").select("*").eq("associated_user_id", userId).single();
 
   if (error) {
@@ -40,10 +46,13 @@ const fetchUserMetrics = async (userId) => {
 
 // Update user metrics
 const updateMetrics = async (userId, metricsData) => {
+  const supabase = getSupabaseInstance()
+
   // Check if metrics exist
   const { data: existingMetrics } = await fetchUserMetrics(userId);
   if (existingMetrics) {
     // Update existing metrics
+
     const { data, error } = await supabase
       .from("user_metrics")
       .update({
