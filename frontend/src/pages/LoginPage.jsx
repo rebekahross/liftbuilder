@@ -25,6 +25,10 @@ const LoginPage = () => {
 
     const data = await response.json();
     console.log("data", data);
+    if (data?.user.user.id != null) {
+      localStorage.setItem("authToken", data.user.session.access_token);
+      localStorage.setItem("user", JSON.stringify(data.user.user.user_metadata));
+    }
 
     if (response.ok) {
       navigate("/");
@@ -39,18 +43,8 @@ const LoginPage = () => {
         <div className={styles.loginContainer}>
           <h1 className={styles.logoText}>LiftBuilder</h1>
           <div className={styles.inputField}>
-            <InputField
-              label={"Email"}
-              type={"email"}
-              value={email}
-              setValue={setEmail}
-            />
-            <InputField
-              label={"Password"}
-              type={"password"}
-              value={password}
-              setValue={setPassword}
-            />
+            <InputField label={"Email"} type={"email"} value={email} setValue={setEmail} />
+            <InputField label={"Password"} type={"password"} value={password} setValue={setPassword} />
           </div>
           <SubmitButton text={"Login"} />
           <div>

@@ -148,7 +148,7 @@ export default function WorkoutCard({ setData, onRemove, onReplace, onSubmitRest
       </div>
       <div className={styles.difficultyDiv}>
         <h4>Set Difficulty</h4>
-        <RangeSlider leftLabel="Too Easy" rightLabel="Impossible/DNF" step="12.5"/>
+        <RangeSlider className={styles.difficultySlider} leftLabel="Too Easy" rightLabel="Impossible/DNF" step="12.5"/>
       </div>
     </div>
   )

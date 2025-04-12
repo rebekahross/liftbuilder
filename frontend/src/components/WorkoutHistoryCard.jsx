@@ -1,5 +1,3 @@
-import styles from "./styles/workoutHistoryCard.module.scss";
-
 import Dumbbell from "../icons/Dumbbell";
 import ArrowDown from "../icons/ArrowDown";
 import ArrowUp from "../icons/ArrowUp";
@@ -7,15 +5,20 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import formatElapsedTimeString from "./utilities/formatElapsedTimeString";
 import RangeSlider from "./RangeSlider";
+import styles from "./styles/workoutHistoryCard.module.scss";
+import Edit from "../icons/Edit";
+import { useNavigate } from "react-router-dom";
 
 export default function WorkoutHistoryCard({ workoutData }) {
   let [isOpened, setOpened] = useState(false);
+  const navigate = useNavigate();
+
   // Potential Feature - add a difficulty slider to each of the workout entries
 
   // Computed Values
   // Schema I'm expecting =
   // { title: string, date: string, yield: string, durationSeconds: number, difficultyPercentage: number,
-  // setData: [{ title: string, fields: [string], sets: [field1: string, field2?: string, field3?: string] }] }
+  // setData: [{ id: string, title: string, fields: [string], sets: [field1: string, field2?: string, field3?: string] }] }
   const workoutDurationString = formatElapsedTimeString(
     workoutData.durationSeconds
   );
@@ -35,6 +38,9 @@ export default function WorkoutHistoryCard({ workoutData }) {
           </div>
         </div>
         <div className={styles.dropdownIndicator}>
+          <button className={styles.editButton} onClick={() => navigate(`/workout/${workoutData.id}`)}>
+            <Edit />
+          </button>
           {isOpened ? (
             <ArrowUp height={"3rem"} width={"3rem"} />
           ) : (
@@ -61,21 +67,14 @@ export default function WorkoutHistoryCard({ workoutData }) {
             className={styles.difficultyRange}
           />
         </div>
-        <h2 style={{ marginTop: 0, marginBottom: 0, fontSize: "2rem" }}>
-          Workouts
-        </h2>
-        <br></br>
+        <h2 style={{ marginTop: 0, marginBottom: 0, fontSize: "2rem" }}>Workouts</h2>
         <div className={styles.workoutsGrid}>
           {workoutData.setData.map((workout) => {
             return (
               <div className={styles.gridEntry}>
                 <div className={styles.entryHeader}>
                   <h3>{workout.title}</h3>
-                  <h6>
-                    {workout.sets.length > 1
-                      ? `${workout.sets.length} Sets`
-                      : `1 Set`}
-                  </h6>
+                  <h6>{workout.sets.length > 1 ? `${workout.sets.length} Sets` : `1 Set`}</h6>
                 </div>
                 <table>
                   <thead>

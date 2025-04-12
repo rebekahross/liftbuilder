@@ -20,6 +20,7 @@ import {
 } from "react-router-dom";
 import "./index.css";
 import WorkoutHistory from "./pages/WorkoutHistory";
+import PreWorkoutForm from "./pages/PreWorkoutForm";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -53,8 +54,9 @@ root.render(
           path="/user-creation-complete"
           element={<UserCreationComplete />}
         />
-        <Route path="/loading-workout" element={<LoadingPage />} />
-        <Route path="/workout" element={<WorkoutPage />} />
+        <Route path="/pre-workout" element={<PreWorkoutForm />} />
+        <Route path="/loading-workout" element={<PreWorkoutForm startLoading={true} />} />
+        <Route path="/workout/:id" element={<WorkoutPage />} />
         <Route path="/workout-history" element={<WorkoutHistory />} />
         <Route path="/manage-profile" element={<ManageProfilePage />} />
       </Routes>

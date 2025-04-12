@@ -10,8 +10,9 @@ export default function LoadingPage() {
     console.log('Starting workout generation');
     
     // Simulate navigation after loading completes
+    // TODO: instead of this, send a request to the server to generate a workout, then navigate out when it responds.
     const timeoutId = setTimeout(() => {
-      navigate('/workout');
+      navigate('/workout/1234');
     }, 3000);
     
     return () => clearTimeout(timeoutId);
