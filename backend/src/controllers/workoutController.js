@@ -74,10 +74,10 @@ const getWorkoutById = async (req, res) => {
 // Create a new workout
 const createWorkout = async (req, res) => {
   const workoutData = req.body;
-  const userId = req.auth.userId;
+  const userJwt = req.headers.authorization.substring(7)
   
   try {
-    const { data, error } = await insertWorkout(workoutData, userId);
+    const { data, error } = await insertWorkout(workoutData, userJwt);
     
     if (error) {
       return res.status(400).json({ message: error.message });

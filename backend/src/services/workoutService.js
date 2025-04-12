@@ -1,4 +1,4 @@
-const supabase = require('./dbService');
+const getSupabaseInstance = require('./dbService');
 
 // Helper functions for formatting
 const formatTimeToString = (seconds) => {
@@ -61,6 +61,7 @@ const parseDistanceField = (distanceField) => {
 
 // Fetch all workouts for a user
 const fetchWorkouts = async (userId) => {
+  const supabase = getSupabaseInstance()
   const { data, error } = await supabase
     .from('workouts')
     .select(`
@@ -83,6 +84,7 @@ const fetchWorkouts = async (userId) => {
 
 // Fetch a user's active workout
 const fetchActiveWorkout = async (userId) => {
+  const supabase = getSupabaseInstance()
   const { data, error } = await supabase
     .from('workouts')
     .select(`
@@ -116,6 +118,7 @@ const fetchActiveWorkout = async (userId) => {
 // Format workout data for frontend
 const formatWorkoutForFrontend = async (workoutId, userId) => {
   // Get base workout data
+  const supabase = getSupabaseInstance()
   const { data: workout, error: workoutError } = await supabase
     .from('workouts')
     .select(`
@@ -252,8 +255,10 @@ const formatPreviousValue = (userSettings, measurementType) => {
 };
 
 // Fetch a specific workout by id
-const fetchWorkoutById = async (workoutId, userId) => {
+const fetchWorkoutById = async (workoutId, userJwt) => {
   // Check if the workout belongs to the user
+  const supabase = getSupabaseInstance(userJwt)
+  const userId = (await supabase.auth.getUser()).data.user.id
   const { data: workout, error: workoutError } = await supabase
     .from('workouts')
     .select('*')
@@ -270,12 +275,14 @@ const fetchWorkoutById = async (workoutId, userId) => {
 };
 
 // Insert a new workout
-const insertWorkout = async (workoutData, userId) => {
+const insertWorkout = async (workoutData, userJwt) => {
   // Create the workout record
+  const supabase = getSupabaseInstance(userJwt)
+  console.log(await supabase.auth.getUser())
   const { data: workout, error: workoutError } = await supabase
     .from('workouts')
     .insert({
-      user_id: userId,
+      user_id: (await supabase.auth.getUser()).data.user.id,
       title: workoutData.title || 'New Workout',
       description: workoutData.description || '',
       is_active: true
@@ -301,7 +308,10 @@ const insertWorkout = async (workoutData, userId) => {
         .select()
         .single();
       
-      if (exerciseError) return; // Continue with next exercise
+      if (exerciseError) {
+        console.error(exerciseError)
+        return;
+      }; // Continue with next exercise
       
       // 2. If sets are provided, add them
       if (exercise.sets && Array.isArray(exercise.sets)) {
@@ -325,7 +335,7 @@ const insertWorkout = async (workoutData, userId) => {
   }
   
   // Return the formatted workout
-  return await fetchWorkoutById(workout.id, userId);
+  return await fetchWorkoutById(workout.id, userJwt);
 };
 
 // Helper to create a set object for DB insertion
@@ -363,6 +373,7 @@ const createSetObject = (workoutExerciseId, setNumber, setData, measurementType)
 
 // Update an existing workout
 const modifyWorkout = async (workoutId, updates, userId) => {
+  const supabase = getSupabaseInstance()
   // First check if the workout belongs to the user
   const { data: workout, error: workoutError } = await supabase
     .from('workouts')
@@ -534,6 +545,7 @@ const modifyWorkout = async (workoutId, updates, userId) => {
 
 // Remove a workout
 const removeWorkout = async (workoutId, userId) => {
+  const supabase = getSupabaseInstance()
   // First check if the workout belongs to the user
   const { data: workout, error: workoutError } = await supabase
     .from('workouts')
@@ -557,6 +569,7 @@ const removeWorkout = async (workoutId, userId) => {
 
 // Mark a workout as complete
 const markWorkoutComplete = async (workoutId, completionData, userId) => {
+  const supabase = getSupabaseInstance()
   // First check if the workout belongs to the user
   const { data: workout, error: workoutError } = await supabase
     .from('workouts')
