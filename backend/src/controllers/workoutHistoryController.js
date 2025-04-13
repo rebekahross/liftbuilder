@@ -24,10 +24,10 @@ const getWorkoutHistory = async (req, res) => {
 // Get workout history detail
 const getWorkoutHistoryDetail = async (req, res) => {
   const { id } = req.params;
-  const userId = req.auth.userId;
+  const userJwt = req.headers.authorization.substring(7)
   
   try {
-    const { data, error } = await fetchWorkoutHistoryDetail(id, userId);
+    const { data, error } = await fetchWorkoutHistoryDetail(id, userJwt);
     
     if (error) {
       return res.status(400).json({ message: error.message });

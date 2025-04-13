@@ -67,7 +67,8 @@ const fetchWorkoutHistory = async (userId) => {
       id: workout.id,
       title: workout.title,
       date: formatDateString(workout.completed_at),
-      yield: `${Math.round(totalWeight)} Lbs`,
+      // yield: `${Math.round(totalWeight)} Lbs`,
+      yield: `${Math.floor(Math.random() * 10000)} Lbs`,
       durationSeconds: workout.duration_seconds || 0,
       difficultyPercentage: (workout.difficulty_rating || 5) * 10
     };
@@ -77,8 +78,9 @@ const fetchWorkoutHistory = async (userId) => {
 };
 
 // Fetch detailed workout history for a specific workout
-const fetchWorkoutHistoryDetail = async (workoutId, userId) => {
-  const supabase = getSupabaseInstance()
+const fetchWorkoutHistoryDetail = async (workoutId, userJwt) => {
+  const supabase = getSupabaseInstance(userJwt)
+  const userId = (await supabase.auth.getUser()).data.user.id;
   // Check if the workout belongs to the user
   const { data: workout, error: workoutError } = await supabase
     .from('workouts')
@@ -87,32 +89,31 @@ const fetchWorkoutHistoryDetail = async (workoutId, userId) => {
     .eq('user_id', userId)
     .single();
   
+
   if (workoutError) return { error: workoutError };
-  
+
   // Get all exercise history for this workout
   const { data: exerciseHistories, error: historyError } = await supabase
-    .from('exercise_history')
-    .select(`
+  .from("workout_exercises")
+  .select(
+    `
+    id,
+    exercise_id,
+    position,
+    rest_time,
+    note,
+    exercises!inner (
       id,
-      exercise_id,
-      performed_at,
-      weight,
-      reps,
-      duration_seconds,
-      distance,
-      distance_unit,
-      difficulty_rating,
-      exercises (
-        id,
-        name,
-        measurement_type
-      )
-    `)
-    .eq('workout_id', workoutId)
-    .order('performed_at', { ascending: true });
-  
+      name,
+      measurement_type
+    )
+  `
+  )
+  .eq("workout_id", workoutId)
+  .order("position", { ascending: true });
   if (historyError) return { error: historyError };
-  
+  console.log(exerciseHistories)
+
   // Group by exercise
   const exerciseGroups = {};
   exerciseHistories.forEach(history => {
