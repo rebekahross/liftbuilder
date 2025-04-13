@@ -5,10 +5,10 @@ const {
 
 // Get workout history
 const getWorkoutHistory = async (req, res) => {
-  const userId = req.auth.userId;
+  const userJwt = req.headers.authorization.substring(7)
   
   try {
-    const { data, error } = await fetchWorkoutHistory(userId);
+    const { data, error } = await fetchWorkoutHistory(userJwt);
     
     if (error) {
       return res.status(400).json({ message: error.message });

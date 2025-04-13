@@ -222,7 +222,7 @@ export default function WorkoutHistory({}) {
             return <WorkoutHistoryCard key={card.id} workoutData={card} />;
           })}
 
-          {historyData.length == 0 && <h3>Nothing Here Yet, Go Build a Workout!</h3>}
+          {historyData.length == 0 && <h3>Loading Workout History...</h3>}
         </div>
       </div>
     </div>
