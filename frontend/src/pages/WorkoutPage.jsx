@@ -5,7 +5,7 @@ import NavBar from "../components/NavBar";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import formatElapsedTimeString from "../components/utilities/formatElapsedTimeString";
-import formatCurrentDayTimeString from "../components/utilities/formatCurrentDayTimeString";
+import LoadingPage from "./LoadingPage";
 
 import styles from "./styles/workoutPage.module.scss";
 
@@ -15,35 +15,63 @@ export default function WorkoutPage() {
   const [workoutSets, setWorkoutSets] = useState([]);
   const [removingIndices, setRemovingIndices] = useState([]);
   const [restTimerTime, setRestTimerTime] = useState(0);
-  const [title, setTitle] = useState('Base Workout');
+  const [title, setTitle] = useState("Base Workout");
   const [workoutDescription, setWorkoutDescription] = useState();
+  const [workoutLoading, setWorkoutLoading] = useState(false);
   const { id } = useParams();
+  const jwtToken = localStorage.getItem("authToken");
+
 
   const navigate = useNavigate();
 
-  const handleRegenerate = () => {
-    navigate("/loading-workout");
+  const handleRegenerate = async () => {
+    setWorkoutLoading(true);
+
+    // TODO: actually send this off to the backend for the llm to generate an update to the existing workout id...
+    const timer = ms => new Promise(res => setTimeout(res, ms));
+    await timer(2000);
+
+    loadWorkoutData();
+
+    setWorkoutLoading(false);
   };
 
   const handleRest = (restTime) => {
     setRestTimerTime(restTime);
   };
 
-  useEffect(() => {
-    if (id != null) {
-      const jwtToken = localStorage.getItem("authToken");
+  const handleFinishWorkout = () => {
+    setIsWorkoutActive(false);
+    
+    fetch(`http://localhost:5001/api/workouts/${id}/complete`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${jwtToken}`
+      }
+    }).then(response => {
+      if (response.ok) {
+        navigate('/');
+      } else {
+        response.text().then(text => {
+          console.log(text);
+        })
+      }
+    })
+  }
 
+  const loadWorkoutData = () => {
+    if (id != null) {
       fetch(`http://localhost:5001/api/workouts/${id}`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${jwtToken}`,
-        }
+        },
       }).then((response) => {
         if (response.ok) {
           response.json().then((data) => {
-            setTitle(data.title)
-            setWorkoutDescription(data.description)
-            setWorkoutSets(data.setData)
+            setTitle(data.title);
+            setWorkoutDescription(data.description);
+            setWorkoutSets(data.setData);
           });
         } else {
           response.text().then((data) => setWorkoutDescription(data));
@@ -232,12 +260,14 @@ export default function WorkoutPage() {
           ],
         },
       ];
-      setWorkoutDescription('This is in testing mode...')
+      setTitle('Testing Workout')
+      setWorkoutDescription("This is in testing mode...");
       setWorkoutSets(dummyData);
     }
+  }
 
-    // TODO: Dynamically wire these up
-    // const fetchResult = await fetch('getWorkout/${id}', {})
+  useEffect(() => {
+    loadWorkoutData();
   }, []);
 
   useEffect(() => {
@@ -253,91 +283,95 @@ export default function WorkoutPage() {
   }, [isWorkoutActive]);
 
   return (
-    <div className={styles.mainDiv}>
-      <NavBar />
-      {restTimerTime != 0 && (
-        <RestTimerModal
-          startTime={restTimerTime}
-          onExit={() => {
-            setRestTimerTime(0);
-          }}
-        />
-      )}
-      <div className={styles.overviewPanel}>
-        <h1>{title}</h1>
-        <p className={styles.llmResponse}>{workoutDescription}</p>
-        <h4>Would you like to adjust anything in this plan?</h4>
-        <div className={styles.inputWithSubmitButton}>
-          <textarea type="text" className={styles.mediumTextInput} placeholder="Add your comments here" />
-          <button className={styles.regenerateButton} onClick={() => handleRegenerate()}>
-            Regenerate
-          </button>
-        </div>
-      </div>
-      <hr />
-      <div className={styles.totalDurationPanel}>
-        <div className={styles.basicFlex}>
-          <h3 className={styles.durationTitle}>Workout Duration</h3>
-          {!isWorkoutActive && elapsedTime === 0 && (
-            <button className={styles.pauseButton} onClick={() => setIsWorkoutActive(true)}>
-              Start Workout
-            </button>
-          )}
-          {isWorkoutActive && (
-            <button className={styles.pauseButton} onClick={() => setIsWorkoutActive(false)}>
-              Pause
-            </button>
-          )}
-          {!isWorkoutActive && elapsedTime > 0 && (
-            <>
-              <button className={styles.pauseButton} onClick={() => setIsWorkoutActive(true)}>
-                Resume
-              </button>
-              <button className={styles.pauseButton} onClick={() => setElapsedTime(0)}>
-                Reset
-              </button>
-            </>
-          )}
-        </div>
-        <a className={styles.workoutTime}>{formatElapsedTimeString(elapsedTime)}</a>
-      </div>
-      {workoutSets.map((item, index) => {
-        const isRemoving = removingIndices.includes(index);
-        return (
-          <div
-            key={`${item.title}${index}`}
-            className={`${styles.workoutCardContainer} ${isRemoving ? styles.removing : ""}`}
-          >
-            <WorkoutCard
-              setData={item}
-              onRemove={(e) => {
-                // First mark this index as removing (for animation)
-                setRemovingIndices((prev) => [...prev, index]);
-
-                // Then actually remove it after the animation completes
-                setTimeout(() => {
-                  setWorkoutSets((previous) => previous.filter((_, i) => i !== index));
-                  setRemovingIndices((prev) => prev.filter((i) => i !== index));
-                }, 500);
+    <div>
+      {workoutLoading ? (
+        <LoadingPage />
+      ) : (
+        <div className={styles.mainDiv}>
+          <NavBar />
+          {restTimerTime != 0 && (
+            <RestTimerModal
+              startTime={restTimerTime}
+              onExit={() => {
+                setRestTimerTime(0);
               }}
-              onSubmitRest={(restTime) => handleRest(restTime)}
             />
+          )}
+          <div className={styles.overviewPanel}>
+            <h1>{title}</h1>
+            <p className={styles.llmResponse}>{workoutDescription}</p>
+            <h4>Would you like to adjust anything in this plan?</h4>
+            <div className={styles.inputWithSubmitButton}>
+              <textarea type="text" className={styles.mediumTextInput} placeholder="Add your comments here" />
+              <button className={styles.regenerateButton} onClick={() => handleRegenerate()}>
+                Regenerate
+              </button>
+            </div>
           </div>
-        );
-      })}
-      <div className={styles.bottomButtons}>
-        <button className={styles.addWorkoutButton}>+ Add New Workout</button>
-        <button
-          className={styles.finishButton}
-          onClick={() => {
-            setIsWorkoutActive(false);
-            // Add any other finish workout logic here
-            navigate("/");
-          }}
-        >
-          Finish Workout
-        </button>
-      </div>
+          <hr />
+          <div className={styles.totalDurationPanel}>
+            <div className={styles.basicFlex}>
+              <h3 className={styles.durationTitle}>Workout Duration</h3>
+              {!isWorkoutActive && elapsedTime === 0 && (
+                <button className={styles.pauseButton} onClick={() => setIsWorkoutActive(true)}>
+                  Start Workout
+                </button>
+              )}
+              {isWorkoutActive && (
+                <button className={styles.pauseButton} onClick={() => setIsWorkoutActive(false)}>
+                  Pause
+                </button>
+              )}
+              {!isWorkoutActive && elapsedTime > 0 && (
+                <>
+                  <button className={styles.pauseButton} onClick={() => setIsWorkoutActive(true)}>
+                    Resume
+                  </button>
+                  <button className={styles.pauseButton} onClick={() => setElapsedTime(0)}>
+                    Reset
+                  </button>
+                </>
+              )}
+            </div>
+            <a className={styles.workoutTime}>{formatElapsedTimeString(elapsedTime)}</a>
+          </div>
+          {workoutSets.map((item, index) => {
+            const isRemoving = removingIndices.includes(index);
+            return (
+              <div
+                key={`${item.title}${index}`}
+                className={`${styles.workoutCardContainer} ${isRemoving ? styles.removing : ""}`}
+              >
+                <WorkoutCard
+                  setData={item}
+                  onRemove={(e) => {
+                    // First mark this index as removing (for animation)
+                    setRemovingIndices((prev) => [...prev, index]);
+
+                    // Then actually remove it after the animation completes
+                    setTimeout(() => {
+                      setWorkoutSets((previous) => previous.filter((_, i) => i !== index));
+                      setRemovingIndices((prev) => prev.filter((i) => i !== index));
+                    }, 500);
+                  }}
+                  onSubmitRest={(restTime) => handleRest(restTime)}
+                />
+              </div>
+            );
+          })}
+          <div className={styles.bottomButtons}>
+            <button className={styles.addWorkoutButton}>+ Add New Workout</button>
+            <button
+              className={styles.finishButton}
+              onClick={() => {
+                handleFinishWorkout()
+              }}
+            >
+              Finish Workout
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

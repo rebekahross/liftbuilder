@@ -9,7 +9,56 @@ import styles from "./styles/workoutHistory.module.scss";
 export default function WorkoutHistory({}) {
   const [historyData, setHistoryData] = useState([]);
 
+  const authToken = localStorage.getItem("authToken");
   const navigate = useNavigate();
+
+  const pullAndSetHistory = async () => {
+    const overallResult = await fetch("http://localhost:5001/api/workout-history", {
+      headers: {
+        Authorization: `Bearer ${authToken}`,
+      },
+    });
+
+    if (overallResult.ok) {
+      const overallResultJson = await overallResult.json();
+    
+      if (overallResultJson != null && overallResultJson.length > 0) {
+        const historyData = await Promise.all(
+          overallResultJson.map(async (entry) => {
+            // Get set data for the history entry
+            let extraData = {};
+            if (entry?.id) {
+              try {
+                const response = await fetch(`http://localhost:5001/api/workouts/${entry.id}`, {
+                  headers: {
+                    Authorization: `Bearer ${authToken}`,
+                  },
+                });
+    
+                if (response.ok) {
+                  const data = await response.json();
+                  if (data?.setData) {
+                    extraData = data.setData;
+                  }
+                } else {
+                  console.error("Bad Response from Workout Selector for ID:", entry.id);
+                }
+              } catch (err) {
+                console.error("Error fetching workout details:", err);
+              }
+            }
+    
+            return { ...entry, setData: extraData };
+          })
+        );
+    
+        setHistoryData(historyData)
+      } else {
+        setHistoryData(overallResultJson)
+      }
+    }
+    
+  };
 
   // On page initialization, pull history data
   useEffect(() => {
@@ -153,7 +202,8 @@ export default function WorkoutHistory({}) {
       ],
     };
 
-    setHistoryData([dummyData, dummyData, dummyData]);
+    // setHistoryData([dummyData, dummyData, dummyData]);
+    pullAndSetHistory();
   }, []);
 
   return (
@@ -172,7 +222,7 @@ export default function WorkoutHistory({}) {
             return <WorkoutHistoryCard key={card.id} workoutData={card} />;
           })}
 
-          {(historyData.length == 0) && <h3>Nothing Here Yet, Go Build a Workout!</h3>}
+          {historyData.length == 0 && <h3>Nothing Here Yet, Go Build a Workout!</h3>}
         </div>
       </div>
     </div>
